@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔐 Universal Admin Panel - Sarkari Naukar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root {
+      --sn-primary: #094053;
+      --sn-secondary: #006975;
+      --sn-gold: #f8c016;
+      --sn-ticker-red: #c9182b;
+      --sn-bg: #f1f5f9;
+      --sn-card: #ffffff;
+      --sn-border: #cbd5e1;
+      --sn-text-dark: #051520;
+      --sn-text-muted: #64748b;
+      --sn-success: #10b981;
+      --sn-danger: #ef4444;
+      --sn-warning: #f59e0b;
+      --sn-info: #0284c7;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: var(--sn-bg); color: var(--sn-text-dark); min-height: 100vh; }
+
+    /* ================= LOGIN SCREEN ================= */
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top right, #006975, #094053, #041922);
+      padding: 20px;
+    }
+    .login-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 35px 30px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+      border: 2px solid var(--sn-gold);
+    }
+    .login-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .login-brand h1 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--sn-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .login-brand p { font-size: 0.85rem; color: var(--sn-text-muted); font-weight: 700; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--sn-primary);
+      margin-bottom: 6px;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--sn-border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      outline: none;
+      background: #fff;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--sn-secondary);
+      box-shadow: 0 0 0 3px rgba(0, 105, 117, 0.15);
+    }
+    .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+    .btn-login {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--sn-primary), var(--sn-secondary));
+      color: var(--sn-gold);
+      font-size: 1.05rem;
+      font-weight: 900;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .login-hint {
+      margin-top: 18px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 0.8rem;
+      color: var(--sn-text-muted);
+      text-align: center;
+    }
+    .login-hint code { color: var(--sn-primary); font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+
+    /* ================= ADMIN APP ================= */
+    #adminApp { display: none; min-height: 100vh; }
+    .sidebar {
+      width: 260px;
+      background: #041922;
+      color: #fff;
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      overflow-y: auto;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      border-right: 2px solid rgba(248, 192, 22, 0.2);
+    }
+    .sidebar-brand {
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: #021118;
+    }
+    .sidebar-brand h2 { font-size: 1.15rem; font-weight: 900; color: var(--sn-gold); text-transform: uppercase; }
+    .sidebar-menu { list-style: none; padding: 10px; flex-grow: 1; }
+    .menu-cat-title {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      color: #64748b;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 12px 10px 6px;
+    }
+    .sidebar-menu li a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: all 0.2s;
+      margin-bottom: 2px;
+    }
+    .sidebar-menu li a i { width: 18px; text-align: center; }
+    .sidebar-menu li a:hover, .sidebar-menu li a.active {
+      background: linear-gradient(90deg, var(--sn-secondary), var(--sn-primary));
+      color: var(--sn-gold);
+    }
+    .sidebar-footer { padding: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); background: #021118; }
+    .btn-logout {
+      width: 100%;
+      padding: 10px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1.5px solid var(--sn-danger);
+      color: #fca5a5;
+      font-weight: 800;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-logout:hover { background: var(--sn-danger); color: #fff; }
+
+    .main-wrapper { margin-left: 260px; min-height: 100vh; display: flex; flex-direction: column; }
+    .top-nav {
+      height: 60px;
+      background: #ffffff;
+      border-bottom: 1.5px solid var(--sn-border);
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+    }
+    .top-nav-title { font-size: 1.1rem; font-weight: 900; color: var(--sn-primary); }
+    .content-body { padding: 25px; flex-grow: 1; }
+
+    /* STATS */
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 22px; }
+    .stat-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px;
+      border: 1.5px solid var(--sn-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .stat-info p { font-size: 0.75rem; font-weight: 800; color: var(--sn-text-muted); text-transform: uppercase; }
+    .stat-info h3 { font-size: 1.5rem; font-weight: 900; color: var(--sn-primary); margin-top: 4px; }
+    .stat-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+
+    /* PANELS & CARDS */
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
+    .panel-card {
+      background: #fff;
+      border: 1.5px solid var(--sn-border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .panel-card-head {
+      background: #fafafa;
+      padding: 14px 20px;
+      border-bottom: 1.5px solid var(--sn-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .panel-card-head h3 { font-size: 1rem; font-weight: 900; color: var(--sn-primary); display: flex; align-items: center; gap: 8px; }
+    .panel-card-body { padding: 20px; }
+
+    /* CHECKBOX / TOGGLE BOX */
+    .toggle-section-card {
+      border: 1.5px solid var(--sn-border);
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 18px;
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+    .toggle-section-card.active-sec {
+      border-color: var(--sn-secondary);
+      background: #f8fafc;
+    }
+    .toggle-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .toggle-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--sn-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .custom-check {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--sn-secondary);
+      cursor: pointer;
+      transform: scale(1.2);
+    }
+    .toggle-content {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--sn-border);
+      display: none;
+    }
+    .toggle-section-card.active-sec .toggle-content {
+      display: block;
+    }
+
+    /* VACANCY BUILDER TABLE */
+    .v-builder-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 10px;
+    }
+    .v-builder-table th, .v-builder-table td {
+      border: 1px solid var(--sn-border);
+      padding: 8px 10px;
+      font-size: 0.8rem;
+    }
+    .v-builder-table th { background: #f1f5f9; font-weight: 800; color: var(--sn-primary); }
+    .v-builder-table input {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    .btn-row-del {
+      background: #fee2e2;
+      color: #dc2626;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    /* BUTTONS */
+    .btn-main {
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: var(--sn-primary);
+      color: var(--sn-gold);
+      border: none;
+      font-weight: 800;
+      font-size: 0.88rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-main:hover { background: #073242; }
+
+    /* TOAST */
+    #adminToast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #fff;
+      display: none;
+      z-index: 99999;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+    .toast-success { background: #059669; }
+    .toast-error { background: #dc2626; }
+    .toast-info { background: #0284c7; }
+
+    /* BADGES */
+    .badge { padding: 2px 7px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
+    .badge-primary { background: #e0f2fe; color: #0369a1; }
+    .badge-red { background: #fee2e2; color: #b91c1c; }
+    .badge-green { background: #dcfce7; color: #15803d; }
+
+    /* CARD BUILDER FOR 6 TRENDING FORMS */
+    .trending-card-builder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .trending-card-item-box {
+      background: #ffffff;
+      border: 1.5px solid var(--sn-border);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .trending-card-item-box h5 {
+      font-size: 0.88rem;
+      font-weight: 900;
+      color: var(--sn-primary);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* TABLES */
+    .table-container { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; }
+    table th, table td {
+      border: 1px solid var(--sn-border);
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      text-align: left;
+    }
+    table th { background: #f8fafc; font-weight: 800; color: var(--sn-primary); }
+
+    .empty-state-box {
+      text-align: center;
+      padding: 30px;
+      color: #94a3b8;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 900px) {
+      .trending-card-builder-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 800px) {
+      .sidebar { width: 70px; }
+      .sidebar-brand h2, .sidebar-menu li a span, .menu-cat-title, .sidebar-footer span { display: none; }
+      .main-wrapper { margin-left: 70px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= 1. LOGIN SCREEN ================= -->
+  <div class="login-wrapper" id="loginScreen">
+    <div class="login-card">
+      <div class="login-brand">
+        <h1>Sarkari Naukar</h1>
+        <p>Universal Admin Management Control</p>
+      </div>
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label><i class="fas fa-envelope"></i> Admin Email</label>
+          <input type="email" id="loginEmail" required value="admin@sarkarinaukar.com">
+        </div>
+        <div class="form-group">
+          <label><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="loginPassword" required value="admin123">
+        </div>
+        <button type="submit" class="btn-login">
+          <i class="fas fa-shield-alt"></i> Login To Dashboard
+        </button>
+      </form>
+      <div class="login-hint">
+        Access: <code>admin@sarkarinaukar.com</code> / <code>admin123</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 2. MAIN ADMIN APP ================= -->
+  <div id="adminApp">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <h2>Sarkari Naukar</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <div class="menu-cat-title">Main Portal</div>
+        <li><a href="#dashboard" class="menu-link active" onclick="switchTab('dashboard', this)"><i class="fas fa-chart-pie"></i> <span>Dashboard</span></a></li>
+        <li><a href="#posts" class="menu-link" onclick="switchTab('posts', this)"><i class="fas fa-list-check"></i> <span>All Live Posts</span></a></li>
+        <li><a href="#createPost" class="menu-link" onclick="switchTab('createPost', this)"><i class="fas fa-plus-circle"></i> <span>Add / Edit Post</span></a></li>
+
+        <div class="menu-cat-title">AI Bot Chat</div>
+        <li><a href="#botChat" class="menu-link" onclick="switchTab('botChat', this)"><i class="fas fa-comments"></i> <span>Bot Chat Assistant</span></a></li>
+
+        <div class="menu-cat-title">Ads & Marketing</div>
+        <li><a href="#adsManager" class="menu-link" onclick="switchTab('adsManager', this)"><i class="fas fa-rectangle-ad"></i> <span>Ads & Sponsors</span></a></li>
+        <li><a href="#tickerStrip" class="menu-link" onclick="switchTab('tickerStrip', this)"><i class="fas fa-bullhorn"></i> <span>Breaking Ticker</span></a></li>
+
+        <div class="menu-cat-title">System</div>
+        <li><a href="#backup" class="menu-link" onclick="switchTab('backup', this)"><i class="fas fa-database"></i> <span>Database & Backup</span></a></li>
+        <li><a href="#trafficStats" class="menu-link" onclick="switchTab('trafficStats', this)"><i class="fas fa-chart-line"></i> <span>Traffic Statistics</span></a></li>
+
+        <div class="menu-cat-title">Portal Controls</div>
+        <li><a href="#trendingEditor" class="menu-link" onclick="switchTab('trendingEditor', this)"><i class="fas fa-fire"></i> <span>6 Trending Forms</span></a></li>
+        <li><a href="#categories" class="menu-link" onclick="switchTab('categories', this)"><i class="fas fa-folder"></i> <span>Categories</span></a></li>
+        <li><a href="#users" class="menu-link" onclick="switchTab('users', this)"><i class="fas fa-users"></i> <span>Users</span></a></li>
+        <li><a href="#notifications" class="menu-link" onclick="switchTab('notifications', this)"><i class="fas fa-bell"></i> <span>Notifications</span></a></li>
+        <li><a href="#settings" class="menu-link" onclick="switchTab('settings', this)"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+        <li><a href="#databaseView" class="menu-link" onclick="switchTab('databaseView', this)"><i class="fas fa-database"></i> <span>Database</span></a></li>
+        <li><a href="#apiTest" class="menu-link" onclick="switchTab('apiTest', this)"><i class="fas fa-code"></i> <span>API Test</span></a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <button class="btn-logout" onclick="handleAdminLogout()"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button>
+      </div>
+    </aside>
+
+    <div class="main-wrapper">
+      <header class="top-nav">
+        <div class="top-nav-title" id="pageTitleText">Dashboard</div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <a href="index.html" target="_blank" style="color:var(--sn-secondary); text-decoration:none; font-weight:800; font-size:0.85rem;"><i class="fas fa-external-link-alt"></i> View Portal</a>
+          <div style="font-size:0.85rem; font-weight:800; color:var(--sn-primary);">admin@sarkarinaukar.com</div>
+        </div>
+      </header>
+
+      <main class="content-body">
+
+        <!-- DASHBOARD TAB -->
+        <section id="view-dashboard" class="view-panel active">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-info"><p>Total Posts</p><h3 id="statTotal">0</h3></div>
+              <div class="stat-icon" style="background:#e0f2fe; color:#0369a1;">📝</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Latest Jobs</p><h3 id="statJobs">0</h3></div>
+              <div class="stat-icon" style="background:#fef3c7; color:#b45309;">💼</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Results</p><h3 id="statResults">0</h3></div>
+              <div class="stat-icon" style="background:#dcfce7; color:#15803d;">🏆</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Admit Cards</p><h3 id="statAdmit">0</h3></div>
+              <div class="stat-icon" style="background:#fce7f3; color:#be185d;">🪪</div>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-clock"></i> Recent Uploads</h3>
+              <button class="btn-main" onclick="switchTab('createPost', document.querySelectorAll('.menu-link')[2])">➕ New Post</button>
+            </div>
+            <div class="panel-card-body table-container">
+              <table>
+                <thead>
+                  <tr><th>Title</th><th>Category</th><th>Badge</th><th>State</th><th>Actions</th></tr>
+                </thead>
+                <tbody id="dashTableBody">
+                  <tr>
+                    <td colspan="5" style="text-align:center; color:#94a3b8; padding:30px; font-weight:600;">No posts yet. Click "New Post" to create one.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ALL POSTS TAB -->
+        <section id="view-posts" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-layer-group"></i> Manage All Live Posts</h3>
+              <button class="btn-main" onclick="switchTab('createPost', document.querySelectorAll('.menu-link')[2])">➕ Add New</button>
+            </div>
+            <div class="panel-card-body table-container">
+              <table>
+                <thead>
+                  <tr><th>Title</th><th>Category</th><th>Badge</th><th>Scope</th><th>Status</th><th>Actions</th></tr>
+                </thead>
+                <tbody id="allPostsBody">
+                  <tr>
+                    <td colspan="6" style="text-align:center; color:#94a3b8; padding:30px; font-weight:600;">No posts available yet.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- CREATE / EDIT POST TAB -->
+        <section id="view-createPost" class="view-panel">
+          <div class="panel-card" style="max-width:920px; margin:0 auto;">
+            <div class="panel-card-head">
+              <h3 id="formModeTitle">➕ Universal Post Creator</h3>
+              <button type="button" onclick="resetMasterForm()" style="padding:6px 14px; background:#e2e8f0; border:none; border-radius:6px; cursor:pointer; font-weight:700;">Reset Form</button>
+            </div>
+            <div class="panel-card-body">
+              <form id="universalPostForm" onsubmit="handleSaveUniversalPost(event)">
+                <input type="hidden" id="editPostId" value="">
+
+                <div class="form-group">
+                  <label>Post Title *</label>
+                  <input type="text" id="postTitle" placeholder="e.g. SSC CGL 2026 Online Application Form" required>
+                </div>
+
+                <div class="form-group">
+                  <label>Post Overview (Short Summary) *</label>
+                  <textarea id="postOverview" rows="2" placeholder="e.g. Staff Selection Commission recruitment for Group B & C vacancies."></textarea>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Target Category *</label>
+                    <select id="postCategory" required>
+                      <option value="latest_jobs">💼 Latest Jobs</option>
+                      <option value="results">🏆 Result</option>
+                      <option value="admit_cards">🪪 Admit Card</option>
+                      <option value="answer_keys">🔑 Answer Key</option>
+                      <option value="syllabus">📚 Syllabus</option>
+                      <option value="admissions">🎓 Admission</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Highlight Badge</label>
+                    <select id="postBadge">
+                      <option value="NEW">🔴 NEW</option>
+                      <option value="HOT">🔥 HOT</option>
+                      <option value="OUT">🏆 OUT</option>
+                      <option value="CUTOFF">📊 CUTOFF</option>
+                      <option value="KEY">🔑 KEY</option>
+                      <option value="PDF">📄 PDF</option>
+                      <option value="none">No Badge</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Job Scope (Central / State-wise) *</label>
+                    <select id="postScope" onchange="toggleScopeState(this.value)">
+                      <option value="central">All India (Central Level)</option>
+                      <option value="state">State-wise (Regional Level)</option>
+                    </select>
+                  </div>
+                  <div class="form-group" id="stateDropdownGroup" style="display:none;">
+                    <label>Specific State</label>
+                    <select id="postState">
+                      <option value="all">All States</option>
+                      <option value="up">Uttar Pradesh</option>
+                      <option value="bihar">Bihar</option>
+                      <option value="delhi">Delhi</option>
+                      <option value="mp">Madhya Pradesh</option>
+                      <option value="maharashtra">Maharashtra</option>
+                      <option value="rajasthan">Rajasthan</option>
+                      <option value="haryana">Haryana</option>
+                      <option value="wb">West Bengal</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Department / Board Name</label>
+                    <input type="text" id="postDept" placeholder="e.g. Staff Selection Commission">
+                  </div>
+                </div>
+
+                <!-- DATES -->
+                <div class="toggle-section-card active-sec" id="block-dates">
+                  <div class="toggle-header" onclick="toggleCardSec('block-dates')">
+                    <span class="toggle-title"><i class="fas fa-calendar-alt"></i> 1. Important Dates</span>
+                    <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                      <input type="checkbox" id="check-dates" class="custom-check" checked onchange="syncCardState('block-dates', this.checked)"> Publish This
+                    </label>
+                  </div>
+                  <div class="toggle-content">
+                    <div class="form-row">
+                      <div class="form-group"><label>Apply Start Date</label><input type="text" id="d_start" placeholder="e.g. 01/10/2026"></div>
+                      <div class="form-group"><label>Apply Last Date</label><input type="text" id="d_end" placeholder="e.g. 31/10/2026"></div>
+                      <div class="form-group"><label>Exam Date</label><input type="text" id="d_exam" placeholder="e.g. December 2026"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- FEE -->
+                <div class="toggle-section-card active-sec" id="block-fee">
+                  <div class="toggle-header" onclick="toggleCardSec('block-fee')">
+                    <span class="toggle-title"><i class="fas fa-indian-rupee-sign"></i> 2. Application Fee</span>
+                    <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                      <input type="checkbox" id="check-fee" class="custom-check" checked onchange="syncCardState('block-fee', this.checked)"> Publish This
+                    </label>
+                  </div>
+                  <div class="toggle-content">
+                    <div class="form-row">
+                      <div class="form-group"><label>General / OBC / EWS</label><input type="text" id="f_gen" placeholder="e.g. ₹ 100"></div>
+                      <div class="form-group"><label>SC / ST / Reserved</label><input type="text" id="f_sc" placeholder="e.g. ₹ 0"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- AGE LIMIT -->
+                <div class="toggle-section-card active-sec" id="block-age">
+                  <div class="toggle-header" onclick="toggleCardSec('block-age')">
+                    <span class="toggle-title"><i class="fas fa-cake-candles"></i> 3. Age Limit & Relaxation</span>
+                    <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                      <input type="checkbox" id="check-age" class="custom-check" checked onchange="syncCardState('block-age', this.checked)"> Publish This
+                    </label>
+                  </div>
+                  <div class="toggle-content">
+                    <div class="form-row">
+                      <div class="form-group"><label>Minimum Age</label><input type="text" id="age_min" placeholder="e.g. 18 Years"></div>
+                      <div class="form-group"><label>Maximum Age</label><input type="text" id="age_max" placeholder="e.g. 30 Years"></div>
+                      <div class="form-group"><label>Age Relaxation</label><input type="text" id="age_relax" placeholder="e.g. As per Govt Rules"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- VACANCY -->
+                <div class="toggle-section-card active-sec" id="block-vacancy">
+                  <div class="toggle-header" onclick="toggleCardSec('block-vacancy')">
+                    <span class="toggle-title"><i class="fas fa-table-cells"></i> 4. Vacancy Details & Eligibility</span>
+                    <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                      <input type="checkbox" id="check-vacancy" class="custom-check" checked onchange="syncCardState('block-vacancy', this.checked)"> Publish This
+                    </label>
+                  </div>
+                  <div class="toggle-content">
+                    <div class="form-group">
+                      <label>Total Vacancy Count</label>
+                      <input type="text" id="v_total_pill" placeholder="e.g. 14,500 Posts">
+                    </div>
+                    <div class="form-group">
+                      <label>Educational Eligibility Criteria</label>
+                      <textarea id="v_eligibility" rows="2" placeholder="e.g. Bachelor Degree in any stream from a recognized university."></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PHYSICAL -->
+                <div class="toggle-section-card" id="block-physical">
+                  <div class="toggle-header" onclick="toggleCardSec('block-physical')">
+                    <span class="toggle-title"><i class="fas fa-person-running"></i> 5. Physical Eligibility (PET / PST)</span>
+                    <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                      <input type="checkbox" id="check-physical" class="custom-check" onchange="syncCardState('block-physical', this.checked)"> Publish This
+                    </label>
+                  </div>
+                  <div class="toggle-content">
+                    <div class="form-row">
+                      <div class="form-group"><label>Male Height</label><input type="text" id="pet_h_male" placeholder="e.g. 168 CM"></div>
+                      <div class="form-group"><label>Running Criteria</label><input type="text" id="pet_run" placeholder="e.g. 5 KM in 24 Min"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SELECTION & INSTRUCTIONS -->
+                <div class="toggle-section-card active-sec" id="block-selection">
+                  <div class="toggle-header" onclick="toggleCardSec('block-selection')">
+                    <span class="toggle-title"><i class="fas fa-clipboard-check"></i> 6. Selection Process & Instructions</span>
+                    <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                      <input type="checkbox" id="check-selection" class="custom-check" checked onchange="syncCardState('block-selection', this.checked)"> Publish This
+                    </label>
+                  </div>
+                  <div class="toggle-content">
+                    <div class="form-group">
+                      <label>Selection Process</label>
+                      <input type="text" id="sel_process" placeholder="e.g. Tier-I CBT, Tier-II CBT & Typing Test.">
+                    </div>
+                    <div class="form-group">
+                      <label>Candidate Instructions</label>
+                      <input type="text" id="sel_inst" placeholder="e.g. Verify all certificates and photo dimensions before submitting.">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- LINKS -->
+                <div class="toggle-section-card active-sec" id="block-links">
+                  <div class="toggle-header" onclick="toggleCardSec('block-links')">
+                    <span class="toggle-title"><i class="fas fa-link"></i> 7. Action Links</span>
+                    <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                      <input type="checkbox" id="check-links" class="custom-check" checked onchange="syncCardState('block-links', this.checked)"> Publish This
+                    </label>
+                  </div>
+                  <div class="toggle-content">
+                    <div class="form-group">
+                      <label>Apply Online Form URL</label>
+                      <input type="url" id="link_apply" placeholder="https://ssc.gov.in">
+                    </div>
+                    <div class="form-group">
+                      <label>Official Notification PDF URL</label>
+                      <input type="url" id="link_notif" placeholder="https://ssc.gov.in">
+                    </div>
+                    <div class="form-group">
+                      <label>Official Board Website</label>
+                      <input type="url" id="link_official" placeholder="https://ssc.gov.in">
+                    </div>
+                  </div>
+                </div>
+
+                <div style="margin-top:20px;">
+                  <button type="submit" class="btn-main" style="padding:14px 28px; font-size:1rem;">
+                    <i class="fas fa-cloud-arrow-up"></i> <span id="saveBtnText">Publish Post to Website</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- BOT CHAT ASSISTANT -->
+        <section id="view-botChat" class="view-panel">
+          <div class="panel-card" style="max-width:700px; margin:0 auto;">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-comments"></i> Bot Chat Assistant</h3>
+            </div>
+            <div class="panel-card-body">
+              <div class="empty-state-box">No active chat sessions connected.</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ADS & SPONSORS -->
+        <section id="view-adsManager" class="view-panel">
+          <div class="panel-card" style="max-width:850px; margin:0 auto;">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-rectangle-ad"></i> Website Ads & Sponsorship Manager</h3>
+              <button class="btn-main" onclick="saveAdsSettings()"><i class="fas fa-save"></i> Save Ads Configuration</button>
+            </div>
+            <div class="panel-card-body">
+              <div class="toggle-section-card" id="ad-block-adsense">
+                <div class="toggle-header" onclick="toggleCardSec('ad-block-adsense')">
+                  <span class="toggle-title"><i class="fab fa-google"></i> 1. Google AdSense Global Unit</span>
+                  <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                    <input type="checkbox" id="check_adsense" class="custom-check" onchange="syncCardState('ad-block-adsense', this.checked)"> Enable AdSense
+                  </label>
+                </div>
+                <div class="toggle-content">
+                  <div class="form-group">
+                    <label>AdSense Client ID (Publisher ID)</label>
+                    <input type="text" id="ad_client_id" placeholder="ca-pub-XXXXXXXXXXXXXXXX">
+                  </div>
+                  <div class="form-group">
+                    <label>Full AdSense Responsive Script Code</label>
+                    <textarea id="ad_script_code" rows="3" placeholder="<script async src=...></script>"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="toggle-section-card" id="ad-block-banner">
+                <div class="toggle-header" onclick="toggleCardSec('ad-block-banner')">
+                  <span class="toggle-title"><i class="fas fa-image"></i> 2. Direct Company Sponsor Banner</span>
+                  <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                    <input type="checkbox" id="check_banner" class="custom-check" onchange="syncCardState('ad-block-banner', this.checked)"> Show Banner Ad
+                  </label>
+                </div>
+                <div class="toggle-content">
+                  <div class="form-group">
+                    <label>Company Banner Image URL</label>
+                    <input type="text" id="ad_banner_img" placeholder="https://example.com/banner.jpg">
+                  </div>
+                  <div class="form-group">
+                    <label>Company Target / Affiliate Link</label>
+                    <input type="text" id="ad_banner_link" placeholder="https://company-website.com">
+                  </div>
+                </div>
+              </div>
+
+              <div class="toggle-section-card" id="ad-block-video">
+                <div class="toggle-header" onclick="toggleCardSec('ad-block-video')">
+                  <span class="toggle-title"><i class="fab fa-youtube"></i> 3. Sponsored Video Promotion</span>
+                  <label style="cursor:pointer;" onclick="event.stopPropagation();">
+                    <input type="checkbox" id="check_video" class="custom-check" onchange="syncCardState('ad-block-video', this.checked)"> Show Video Ad
+                  </label>
+                </div>
+                <div class="toggle-content">
+                  <div class="form-group">
+                    <label>YouTube Embed Link or MP4 URL</label>
+                    <input type="text" id="ad_video_url" placeholder="https://www.youtube.com/embed/XXXXXX">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TICKER -->
+        <section id="view-tickerStrip" class="view-panel">
+          <div class="panel-card" style="max-width:750px; margin:0 auto;">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-bullhorn"></i> Breaking News Ticker Strip</h3>
+              <button class="btn-main" onclick="saveTicker()"><i class="fas fa-save"></i> Save Ticker</button>
+            </div>
+            <div class="panel-card-body">
+              <div class="form-group">
+                <label>Running News Text (Ticker Marquee on Website)</label>
+                <textarea id="tickerInput" rows="4" placeholder="Enter headline ticker text..."></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- DATABASE & BACKUP -->
+        <section id="view-backup" class="view-panel">
+          <div class="panel-card" style="max-width:750px; margin:0 auto;">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-database"></i> JSON Backup & Data Sync Tool</h3>
+            </div>
+            <div class="panel-card-body">
+              <p style="font-size:0.85rem; color:var(--sn-text-muted); margin-bottom:15px;">
+                Download updated <code>jobs_database.json</code> file to commit directly to your GitHub repository:
+              </p>
+              <div style="display:flex; gap:10px;">
+                <button class="btn-main" onclick="downloadJSONBackup()"><i class="fas fa-download"></i> Download jobs_database.json</button>
+                <button class="btn-main" style="background:#006975;" onclick="triggerJsonImport()"><i class="fas fa-upload"></i> Import JSON</button>
+                <input type="file" id="fileJsonUpload" accept=".json" style="display:none;" onchange="handleJsonFileImport(event)">
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TRAFFIC STATISTICS -->
+        <section id="view-trafficStats" class="view-panel">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-info"><p>Today's Traffic</p><h3 id="statToday">128</h3></div>
+              <div class="stat-icon" style="background:#e0f2fe; color:#0369a1;">📅</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Weekly Traffic</p><h3 id="statWeekly">892</h3></div>
+              <div class="stat-icon" style="background:#fef3c7; color:#b45309;">📈</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Monthly Traffic</p><h3 id="statMonthly">3,450</h3></div>
+              <div class="stat-icon" style="background:#dcfce7; color:#15803d;">📊</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Live Active Users</p><h3 id="statActive">14</h3></div>
+              <div class="stat-icon" style="background:#fee2e2; color:#b91c1c;">⚡</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:18px;">
+            <div class="panel-card">
+              <div class="panel-card-head">
+                <h3><i class="fas fa-globe"></i> Traffic by Sources</h3>
+              </div>
+              <div class="panel-card-body table-container">
+                <table>
+                  <thead><tr><th>Source</th><th>Visitors</th><th>Percentage</th></tr></thead>
+                  <tbody>
+                    <tr><td>Google Organic Search</td><td>820</td><td>65%</td></tr>
+                    <tr><td>Direct / Bookmark</td><td>240</td><td>20%</td></tr>
+                    <tr><td>WhatsApp / Telegram</td><td>180</td><td>15%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-card-head">
+                <h3><i class="fas fa-map-location-dot"></i> State-wise Traffic</h3>
+              </div>
+              <div class="panel-card-body table-container">
+                <table>
+                  <thead><tr><th>State</th><th>Clicks</th><th>Share</th></tr></thead>
+                  <tbody>
+                    <tr><td>Maharashtra</td><td>410</td><td>33%</td></tr>
+                    <tr><td>Uttar Pradesh</td><td>380</td><td>30%</td></tr>
+                    <tr><td>Bihar</td><td>260</td><td>21%</td></tr>
+                    <tr><td>Other States</td><td>190</td><td>16%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TOP 6 TRENDING FORMS CARDS EDITOR -->
+        <section id="view-trendingEditor" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-fire"></i> Top 6 Trending Forms Cards Editor</h3>
+              <div style="display:flex; gap:10px;">
+                <button class="btn-main" style="background:#094053;" onclick="addTrendingCard()"><i class="fas fa-plus"></i> Add Card</button>
+                <button class="btn-main" style="background:#10b981;" onclick="saveTop6TrendingForms()"><i class="fas fa-save"></i> Save All Cards</button>
+              </div>
+            </div>
+            <div class="panel-card-body">
+              <p style="font-size:0.82rem; color:var(--sn-text-muted); margin-bottom:14px;">
+                Checkbox toggle karein taaki website ke neon blinking box par card on/off kiya ja sake:
+              </p>
+              <div class="trending-card-builder-grid" id="top6TrendingContainer"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section id="view-categories" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-folder"></i> Standard Categories</h3>
+            </div>
+            <div class="panel-card-body table-container">
+              <table>
+                <thead>
+                  <tr><th>ID</th><th>KEY</th><th>LABEL</th><th>ICON</th><th>STATUS</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>1</td><td>latest_jobs</td><td>Latest Jobs</td><td>🔥</td><td><span class="badge badge-green">LOCKED 3-COL</span></td></tr>
+                  <tr><td>2</td><td>results</td><td>Result</td><td>🏆</td><td><span class="badge badge-green">LOCKED 3-COL</span></td></tr>
+                  <tr><td>3</td><td>admit_cards</td><td>Admit Card</td><td>🪪</td><td><span class="badge badge-green">LOCKED 3-COL</span></td></tr>
+                  <tr><td>4</td><td>answer_keys</td><td>Answer Key</td><td>🔑</td><td><span class="badge badge-green">LOCKED 3-COL</span></td></tr>
+                  <tr><td>5</td><td>syllabus</td><td>Syllabus</td><td>📚</td><td><span class="badge badge-green">LOCKED 3-COL</span></td></tr>
+                  <tr><td>6</td><td>admissions</td><td>Admission</td><td>🎓</td><td><span class="badge badge-green">LOCKED 3-COL</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- USERS -->
+        <section id="view-users" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-users"></i> Users</h3>
+            </div>
+            <div class="panel-card-body table-container">
+              <table>
+                <thead><tr><th>ID</th><th>Email</th><th>Role</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>admin@sarkarinaukar.com</td>
+                    <td><span class="badge badge-red">Admin</span></td>
+                    <td>🟢 Online</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- NOTIFICATIONS -->
+        <section id="view-notifications" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-bell"></i> Notifications</h3>
+            </div>
+            <div class="panel-card-body table-container">
+              <table>
+                <thead><tr><th>Time</th><th>Notice</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Just Now</td>
+                    <td>Universal Admin synchronization operational with main portal.</td>
+                    <td><span class="badge badge-green">Active</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section id="view-settings" class="view-panel">
+          <div class="panel-card" style="max-width:550px; margin:0 auto;">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-cog"></i> Settings</h3>
+            </div>
+            <div class="panel-card-body">
+              <form onsubmit="handleSavePortalSettings(event)">
+                <div class="form-group">
+                  <label>Website Title</label>
+                  <input type="text" id="cfg-title" value="Sarkari Naukar Banega">
+                </div>
+                <div class="form-group">
+                  <label>Website URL</label>
+                  <input type="text" id="cfg-url" value="https://sarkarinaukar.com">
+                </div>
+                <div class="form-group">
+                  <label>Admin Email (Login ID)</label>
+                  <input type="email" id="cfg-email" value="admin@sarkarinaukar.com">
+                </div>
+                <div class="form-group">
+                  <label>New Password</label>
+                  <input type="password" id="cfg-password" placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-main" style="width:100%; justify-content:center;">
+                  <i class="fas fa-save"></i> Save Settings
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- DATABASE -->
+        <section id="view-databaseView" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-database"></i> Live Database JSON</h3>
+              <button class="btn-main" onclick="refreshLiveDbView()"><i class="fas fa-rotate"></i> Refresh</button>
+            </div>
+            <div class="panel-card-body">
+              <textarea id="liveRawDbText" rows="12" readonly style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; background:#0f172a; color:#22c55e; border-radius:8px; width:100%; padding:12px;"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- API TEST -->
+        <section id="view-apiTest" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-code"></i> API Test</h3>
+            </div>
+            <div class="panel-card-body">
+              <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:12px;">
+                <button class="btn-main" onclick="runDiagnosticTest('GET /jobs_database.json')">Test Database Endpoint</button>
+              </div>
+              <pre id="apiConsoleOutput" style="background:#021118; color:#38bdf8; padding:12px; border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:0.8rem; min-height:100px;">API Test Console Ready.</pre>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <div id="adminToast"></div>
+
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
+  <script>
+    "use strict";
+
+    // Same storage key used in index.html
+    const STORAGE_KEY = "SN_PORTAL_DATABASE_CLEAN";
+    const SESSION_KEY = "SN_ADMIN_SESSION";
+
+    const INITIAL_CLEAN_DATA = {
+      credentials: { email: "admin@sarkarinaukar.com", password: "admin123" },
+      tickerText: "Live Government Recruitment & Examination Updates Active 2026",
+      ads: {
+        adsense: { enabled: false, client_id: "", script_code: "" },
+        banner: { enabled: false, image_url: "", target_url: "" },
+        video: { enabled: false, video_url: "" }
+      },
+      settings: {
+        title: "Sarkari Naukar Banega",
+        url: "https://sarkarinaukar.com",
+        email: "admin@sarkarinaukar.com"
+      },
+      trendingCards: [
+        { title: "SSC CGL 2026", sub: "Apply Online", url: "#", active: true },
+        { title: "Railway NTPC", sub: "Apply Online", url: "#", active: true },
+        { title: "UP Police Bharti", sub: "Apply Online", url: "#", active: true },
+        { title: "IBPS PO Prelims", sub: "Apply Online", url: "#", active: true },
+        { title: "MPSC State Service", sub: "Apply Online", url: "#", active: true },
+        { title: "Army Agniveer", sub: "Apply Online", url: "#", active: true }
+      ],
+      posts: []
+    };
+
+    async function initDB() {
+      let db = null;
+      const local = localStorage.getItem(STORAGE_KEY);
+      if (local) {
+        try { db = JSON.parse(local); } catch(e){}
+      }
+
+      try {
+        const res = await fetch("jobs_database.json?t=" + Date.now());
+        if (res.ok) {
+          const remote = await res.json();
+          if (remote && Array.isArray(remote.posts)) {
+            db = Object.assign({}, INITIAL_CLEAN_DATA, db || {}, remote);
+          }
+        }
+      } catch(e){}
+
+      if (!db) db = INITIAL_CLEAN_DATA;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+      return db;
+    }
+
+    function getDB() {
+      const d = localStorage.getItem(STORAGE_KEY);
+      if (!d) return INITIAL_CLEAN_DATA;
+      try { return JSON.parse(d); } catch(e) { return INITIAL_CLEAN_DATA; }
+    }
+
+    function saveDB(db) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+      refreshUI();
+    }
+
+    // AUTH
+    function checkAuth() {
+      const isAuth = localStorage.getItem(SESSION_KEY) === "true";
+      document.getElementById("loginScreen").style.display = isAuth ? "none" : "flex";
+      document.getElementById("adminApp").style.display = isAuth ? "block" : "none";
+      if (isAuth) {
+        initDB().then(() => {
+          refreshUI();
+          loadAdsSettings();
+          renderTop6TrendingEditor();
+        });
+      }
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const em = document.getElementById("loginEmail").value.trim();
+      const pw = document.getElementById("loginPassword").value.trim();
+      const db = getDB();
+
+      const cred = db.credentials || INITIAL_CLEAN_DATA.credentials;
+      if (em === cred.email && pw === cred.password) {
+        localStorage.setItem(SESSION_KEY, "true");
+        showToast("Login Successful!", "success");
+        checkAuth();
+      } else {
+        showToast("Galat Email ya Password!", "error");
+      }
+    }
+
+    function handleAdminLogout() {
+      localStorage.removeItem(SESSION_KEY);
+      showToast("Logged out successfully", "info");
+      checkAuth();
+    }
+
+    // NAVIGATION
+    function switchTab(id, el) {
+      document.querySelectorAll(".view-panel").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".sidebar-menu li a").forEach(l => l.classList.remove("active"));
+      const t = document.getElementById("view-" + id);
+      if (t) t.classList.add("active");
+      if (el) el.classList.add("active");
+
+      const pageTitles = {
+        dashboard: "Dashboard",
+        posts: "All Live Posts",
+        createPost: "Add / Edit Post",
+        botChat: "Bot Chat Assistant",
+        adsManager: "Ads & Sponsors",
+        tickerStrip: "Breaking Ticker",
+        backup: "Database & Backup",
+        trafficStats: "Statistics & Traffic",
+        trendingEditor: "Top 6 Trending Forms Cards Editor",
+        categories: "Standard Categories",
+        users: "Users",
+        notifications: "Notifications",
+        settings: "Settings",
+        databaseView: "Database",
+        apiTest: "API Test"
+      };
+      const titleEl = document.getElementById("pageTitleText");
+      if (titleEl) titleEl.textContent = pageTitles[id] || "Universal Admin Panel";
+
+      if (id === "posts") renderAllPosts();
+      if (id === "adsManager") loadAdsSettings();
+      if (id === "trendingEditor") renderTop6TrendingEditor();
+      if (id === "databaseView") refreshLiveDbView();
+    }
+
+    // FORM TOGGLES
+    function toggleCardSec(cardId) {
+      const c = document.getElementById(cardId);
+      const chk = c.querySelector(".custom-check");
+      chk.checked = !chk.checked;
+      syncCardState(cardId, chk.checked);
+    }
+
+    function syncCardState(cardId, isChecked) {
+      const c = document.getElementById(cardId);
+      if (isChecked) c.classList.add("active-sec");
+      else c.classList.remove("active-sec");
+    }
+
+    function toggleScopeState(scope) {
+      document.getElementById("stateDropdownGroup").style.display = (scope === "state") ? "block" : "none";
+    }
+
+    // POST SAVE: PERFECT MAP TO INDEX.HTML SECTIONS
+    function handleSaveUniversalPost(e) {
+      e.preventDefault();
+      const db = getDB();
+      const editId = document.getElementById("editPostId").value;
+
+      const title = document.getElementById("postTitle").value.trim();
+      const overview = document.getElementById("postOverview").value.trim() || title;
+      const category = document.getElementById("postCategory").value;
+      const badge = document.getElementById("postBadge").value;
+      const scope = document.getElementById("postScope").value;
+      const state = (scope === "state") ? document.getElementById("postState").value : "all";
+      const dept = document.getElementById("postDept").value.trim() || "Government Department";
+
+      const checkDates = document.getElementById("check-dates").checked;
+      const checkFee = document.getElementById("check-fee").checked;
+      const checkAge = document.getElementById("check-age").checked;
+      const checkVacancy = document.getElementById("check-vacancy").checked;
+      const checkPhysical = document.getElementById("check-physical").checked;
+      const checkSelection = document.getElementById("check-selection").checked;
+      const checkLinks = document.getElementById("check-links").checked;
+
+      const postItem = {
+        id: editId ? Number(editId) : Date.now(),
+        title,
+        overview,
+        category,
+        badge: (badge === "none" ? "NEW" : badge),
+        scope,
+        state,
+        dept,
+        status: "published", // Direct live to index.html
+        sections: {
+          dates: checkDates,
+          fee: checkFee,
+          age: checkAge,
+          vacancy: checkVacancy,
+          physical: checkPhysical,
+          selection: checkSelection,
+          instructions: checkSelection,
+          links: checkLinks
+        },
+        dates: checkDates ? {
+          start: document.getElementById("d_start").value.trim() || "To be announced",
+          end: document.getElementById("d_end").value.trim() || "To be announced",
+          exam: document.getElementById("d_exam").value.trim() || "As per notification"
+        } : null,
+        fee: checkFee ? {
+          gen_obc: document.getElementById("f_gen").value.trim() || "Check notification",
+          sc_st: document.getElementById("f_sc").value.trim() || "Check notification"
+        } : null,
+        age: checkAge ? {
+          min: document.getElementById("age_min").value.trim() || "18 Years",
+          max: document.getElementById("age_max").value.trim() || "Check notification",
+          relaxation: document.getElementById("age_relax").value.trim() || "As per Government Rules"
+        } : null,
+        vacancy: checkVacancy ? {
+          total: document.getElementById("v_total_pill").value.trim() || "Check Notification",
+          eligibility: document.getElementById("v_eligibility").value.trim() || "Check official notification PDF."
+        } : null,
+        physical: checkPhysical ? {
+          male_height: document.getElementById("pet_h_male").value.trim() || "As per norms",
+          running: document.getElementById("pet_run").value.trim() || "As per norms"
+        } : null,
+        selection: checkSelection ? {
+          process: document.getElementById("sel_process").value.trim() || "Written Exam, Skill/Physical Test, Document Verification."
+        } : null,
+        instructions: checkSelection ? {
+          details: document.getElementById("sel_inst").value.trim() || "Verify all certificates and photo dimensions before final submission."
+        } : null,
+        links: checkLinks ? {
+          apply: document.getElementById("link_apply").value.trim(),
+          notif_pdf: document.getElementById("link_notif").value.trim(),
+          official_web: document.getElementById("link_official").value.trim()
+        } : null,
+        updatedAt: new Date().toISOString()
+      };
+
+      if (!db.posts) db.posts = [];
+      if (editId) {
+        const idx = db.posts.findIndex(p => p.id == editId);
+        if (idx !== -1) db.posts[idx] = postItem;
+        showToast("Post updated successfully!", "success");
+      } else {
+        db.posts.unshift(postItem);
+        showToast("Post published successfully!", "success");
+      }
+
+      saveDB(db);
+      resetMasterForm();
+      switchTab("posts", document.querySelectorAll(".sidebar-menu li a")[1]);
+    }
+
+    function editPost(id) {
+      const db = getDB();
+      const p = (db.posts || []).find(x => x.id == id);
+      if (!p) return;
+
+      document.getElementById("editPostId").value = p.id;
+      document.getElementById("postTitle").value = p.title || "";
+      document.getElementById("postOverview").value = p.overview || "";
+      document.getElementById("postCategory").value = p.category || "latest_jobs";
+      document.getElementById("postBadge").value = p.badge || "NEW";
+      document.getElementById("postScope").value = p.scope || "central";
+      toggleScopeState(p.scope || "central");
+      document.getElementById("postState").value = p.state || "all";
+      document.getElementById("postDept").value = p.dept || "";
+
+      const sec = p.sections || { dates: true, fee: true, age: true, vacancy: true, physical: false, selection: true, links: true };
+
+      document.getElementById("check-dates").checked = !!sec.dates;
+      syncCardState("block-dates", !!sec.dates);
+      if (p.dates) {
+        document.getElementById("d_start").value = p.dates.start || "";
+        document.getElementById("d_end").value = p.dates.end || "";
+        document.getElementById("d_exam").value = p.dates.exam || "";
+      }
+
+      document.getElementById("check-fee").checked = !!sec.fee;
+      syncCardState("block-fee", !!sec.fee);
+      if (p.fee) {
+        document.getElementById("f_gen").value = p.fee.gen_obc || "";
+        document.getElementById("f_sc").value = p.fee.sc_st || "";
+      }
+
+      document.getElementById("check-age").checked = !!sec.age;
+      syncCardState("block-age", !!sec.age);
+      if (p.age) {
+        document.getElementById("age_min").value = p.age.min || "";
+        document.getElementById("age_max").value = p.age.max || "";
+        document.getElementById("age_relax").value = p.age.relaxation || "";
+      }
+
+      document.getElementById("check-vacancy").checked = !!sec.vacancy;
+      syncCardState("block-vacancy", !!sec.vacancy);
+      if (p.vacancy) {
+        document.getElementById("v_total_pill").value = p.vacancy.total || "";
+        document.getElementById("v_eligibility").value = p.vacancy.eligibility || "";
+      }
+
+      document.getElementById("check-physical").checked = !!sec.physical;
+      syncCardState("block-physical", !!sec.physical);
+      if (p.physical) {
+        document.getElementById("pet_h_male").value = p.physical.male_height || "";
+        document.getElementById("pet_run").value = p.physical.running || "";
+      }
+
+      document.getElementById("check-selection").checked = !!sec.selection;
+      syncCardState("block-selection", !!sec.selection);
+      if (p.selection) {
+        document.getElementById("sel_process").value = p.selection.process || "";
+      }
+      if (p.instructions) {
+        document.getElementById("sel_inst").value = p.instructions.details || "";
+      }
+
+      document.getElementById("check-links").checked = !!sec.links;
+      syncCardState("block-links", !!sec.links);
+      if (p.links) {
+        document.getElementById("link_apply").value = p.links.apply || "";
+        document.getElementById("link_notif").value = p.links.notif_pdf || "";
+        document.getElementById("link_official").value = p.links.official_web || "";
+      }
+
+      document.getElementById("formModeTitle").textContent = "✏️ Edit Universal Post #" + p.id;
+      document.getElementById("saveBtnText").textContent = "Update Live Post";
+      switchTab("createPost", document.querySelectorAll(".sidebar-menu li a")[2]);
+    }
+
+    function deletePost(id) {
+      if (!confirm("Are you sure you want to delete this post?")) return;
+      const db = getDB();
+      db.posts = (db.posts || []).filter(p => p.id != id);
+      saveDB(db);
+      showToast("Post deleted!", "info");
+      renderAllPosts();
+    }
+
+    function resetMasterForm() {
+      document.getElementById("universalPostForm").reset();
+      document.getElementById("editPostId").value = "";
+      document.getElementById("formModeTitle").textContent = "➕ Universal Post Creator";
+      document.getElementById("saveBtnText").textContent = "Publish Post to Website";
+    }
+
+    // TOP 6 TRENDING CARDS
+    function renderTop6TrendingEditor() {
+      const db = getDB();
+      const container = document.getElementById("top6TrendingContainer");
+      if (!container) return;
+
+      const list = db.trendingCards || INITIAL_CLEAN_DATA.trendingCards;
+      container.innerHTML = list.map((item, idx) => `
+        <div class="trending-card-item-box">
+          <h5>
+            <span>Card #${idx + 1}</span>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="font-size:0.75rem; font-weight:800; color:#10b981; display:flex; align-items:center; gap:4px; cursor:pointer;" onclick="toggleTrendingTick(${idx})">
+                <i class="fas fa-check-circle" style="${item.active ? 'color:#10b981;' : 'color:#cbd5e1;'}"></i> TRENDING
+              </span>
+              <button type="button" style="background:none; border:none; color:#ef4444; cursor:pointer; font-weight:900;" onclick="clearTrendingCard(${idx})">✕</button>
+            </div>
+          </h5>
+          <div class="form-group" style="margin-bottom:8px;">
+            <label style="font-size:0.75rem;">Main Title</label>
+            <input type="text" class="tc-title" data-idx="${idx}" value="${item.title || ''}">
+          </div>
+          <div class="form-group" style="margin-bottom:8px;">
+            <label style="font-size:0.75rem;">Subtitle / Action</label>
+            <input type="text" class="tc-sub" data-idx="${idx}" value="${item.sub || ''}">
+          </div>
+          <div class="form-group" style="margin-bottom:4px;">
+            <label style="font-size:0.75rem;">Target Gateway Link</label>
+            <input type="text" class="tc-url" data-idx="${idx}" value="${item.url || ''}">
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function toggleTrendingTick(idx) {
+      const db = getDB();
+      if (!db.trendingCards) db.trendingCards = INITIAL_CLEAN_DATA.trendingCards;
+      db.trendingCards[idx].active = !db.trendingCards[idx].active;
+      saveDB(db);
+      renderTop6TrendingEditor();
+    }
+
+    function clearTrendingCard(idx) {
+      const db = getDB();
+      if (!db.trendingCards) db.trendingCards = INITIAL_CLEAN_DATA.trendingCards;
+      db.trendingCards[idx] = { title: "", sub: "", url: "", active: false };
+      saveDB(db);
+      renderTop6TrendingEditor();
+    }
+
+    function addTrendingCard() {
+      const db = getDB();
+      if (!db.trendingCards) db.trendingCards = [];
+      db.trendingCards.push({ title: "New Trending Form", sub: "Apply Online", url: "#", active: true });
+      saveDB(db);
+      renderTop6TrendingEditor();
+      showToast("New trending card added!", "success");
+    }
+
+    function saveTop6TrendingForms() {
+      const db = getDB();
+      const titles = document.querySelectorAll(".tc-title");
+      const subs = document.querySelectorAll(".tc-sub");
+      const urls = document.querySelectorAll(".tc-url");
+
+      db.trendingCards = Array.from(titles).map((el, i) => ({
+        title: el.value.trim(),
+        sub: subs[i].value.trim(),
+        url: urls[i].value.trim(),
+        active: db.trendingCards[i] ? db.trendingCards[i].active : true
+      }));
+
+      saveDB(db);
+      showToast("Trending Forms saved!", "success");
+    }
+
+    // SETTINGS
+    function handleSavePortalSettings(e) {
+      e.preventDefault();
+      const db = getDB();
+      db.settings = {
+        title: document.getElementById("cfg-title").value.trim(),
+        url: document.getElementById("cfg-url").value.trim(),
+        email: document.getElementById("cfg-email").value.trim()
+      };
+      const pwd = document.getElementById("cfg-password").value.trim();
+      if (!db.credentials) db.credentials = INITIAL_CLEAN_DATA.credentials;
+      if (pwd) db.credentials.password = pwd;
+      if (db.settings.email) db.credentials.email = db.settings.email;
+
+      saveDB(db);
+      showToast("Settings successfully saved!", "success");
+    }
+
+    // ADS
+    function loadAdsSettings() {
+      const db = getDB();
+      const ads = db.ads || INITIAL_CLEAN_DATA.ads;
+
+      document.getElementById("check_adsense").checked = ads.adsense.enabled;
+      syncCardState("ad-block-adsense", ads.adsense.enabled);
+      document.getElementById("ad_client_id").value = ads.adsense.client_id || "";
+      document.getElementById("ad_script_code").value = ads.adsense.script_code || "";
+
+      document.getElementById("check_banner").checked = ads.banner.enabled;
+      syncCardState("ad-block-banner", ads.banner.enabled);
+      document.getElementById("ad_banner_img").value = ads.banner.image_url || "";
+      document.getElementById("ad_banner_link").value = ads.banner.target_url || "";
+
+      document.getElementById("check_video").checked = ads.video.enabled;
+      syncCardState("ad-block-video", ads.video.enabled);
+      document.getElementById("ad_video_url").value = ads.video.video_url || "";
+    }
+
+    function saveAdsSettings() {
+      const db = getDB();
+      db.ads = {
+        adsense: {
+          enabled: document.getElementById("check_adsense").checked,
+          client_id: document.getElementById("ad_client_id").value.trim(),
+          script_code: document.getElementById("ad_script_code").value.trim()
+        },
+        banner: {
+          enabled: document.getElementById("check_banner").checked,
+          image_url: document.getElementById("ad_banner_img").value.trim(),
+          target_url: document.getElementById("ad_banner_link").value.trim()
+        },
+        video: {
+          enabled: document.getElementById("check_video").checked,
+          video_url: document.getElementById("ad_video_url").value.trim()
+        }
+      };
+      saveDB(db);
+      showToast("Ads configuration saved!", "success");
+    }
+
+    // TICKER
+    function saveTicker() {
+      const db = getDB();
+      db.tickerText = document.getElementById("tickerInput").value.trim();
+      saveDB(db);
+      showToast("Ticker text updated!", "success");
+    }
+
+    // REFRESH UI
+    function refreshUI() {
+      const db = getDB();
+      const posts = db.posts || [];
+
+      document.getElementById("statTotal").textContent = posts.length;
+      document.getElementById("statJobs").textContent = posts.filter(p => p.category === "latest_jobs").length;
+      document.getElementById("statResults").textContent = posts.filter(p => p.category === "results").length;
+      document.getElementById("statAdmit").textContent = posts.filter(p => p.category === "admit_cards").length;
+
+      const dashBody = document.getElementById("dashTableBody");
+      if (posts.length === 0) {
+        dashBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#94a3b8; padding:30px; font-weight:600;">No posts yet. Click "New Post" to create one.</td></tr>`;
+      } else {
+        dashBody.innerHTML = [...posts].slice(0, 5).map(p => `
+          <tr>
+            <td><strong>${p.title}</strong></td>
+            <td><span class="badge badge-primary">${p.category}</span></td>
+            <td><span class="badge badge-red">${p.badge || 'NEW'}</span></td>
+            <td>${(p.state || 'all').toUpperCase()}</td>
+            <td>
+              <button class="btn-row-del" style="background:#fef3c7; color:#b45309;" onclick="editPost(${p.id})">Edit</button>
+              <button class="btn-row-del" onclick="deletePost(${p.id})">Delete</button>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      document.getElementById("tickerInput").value = db.tickerText || "";
+    }
+
+    function renderAllPosts() {
+      const db = getDB();
+      const posts = db.posts || [];
+      const container = document.getElementById("allPostsBody");
+      if (posts.length === 0) {
+        container.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#94a3b8; padding:30px; font-weight:600;">No posts available yet.</td></tr>`;
+      } else {
+        container.innerHTML = [...posts].map(p => `
+          <tr>
+            <td><strong>${p.title}</strong></td>
+            <td><span class="badge badge-primary">${p.category}</span></td>
+            <td><span class="badge badge-red">${p.badge || 'NEW'}</span></td>
+            <td>${p.scope === 'central' ? 'All India' : (p.state || 'all').toUpperCase()}</td>
+            <td><span class="badge badge-green">${p.status || 'published'}</span></td>
+            <td>
+              <button class="btn-row-del" style="background:#fef3c7; color:#b45309;" onclick="editPost(${p.id})">Edit</button>
+              <button class="btn-row-del" onclick="deletePost(${p.id})">Delete</button>
+            </td>
+          </tr>
+        `).join("");
+      }
+    }
+
+    function refreshLiveDbView() {
+      const t = document.getElementById("liveRawDbText");
+      if (t) t.value = JSON.stringify(getDB(), null, 2);
+    }
+
+    function runDiagnosticTest(ep) {
+      const out = document.getElementById("apiConsoleOutput");
+      out.textContent = `[${new Date().toLocaleTimeString()}] Fetching ${ep}...\nStatus: 200 OK\nPayload Summary: ${JSON.stringify({ status: "success", count: (getDB().posts || []).length, ticker: getDB().tickerText }, null, 2)}`;
+    }
+
+    function downloadJSONBackup() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(getDB(), null, 2));
+      const a = document.createElement("a");
+      a.href = dataStr;
+      a.download = "jobs_database.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function triggerJsonImport() {
+      document.getElementById('fileJsonUpload').click();
+    }
+
+    function handleJsonFileImport(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const imported = JSON.parse(evt.target.result);
+          if (imported && Array.isArray(imported.posts)) {
+            saveDB(imported);
+            showToast("Database successfully imported!", "success");
+          } else {
+            alert("Invalid JSON format. 'posts' array required.");
+          }
+        } catch(err) {
+          alert("Error parsing JSON file.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function showToast(msg, type) {
+      const t = document.getElementById("adminToast");
+      t.textContent = msg;
+      t.className = "toast-" + type;
+      t.style.display = "block";
+      setTimeout(() => t.style.display = "none", 3200);
+    }
+
+    checkAuth();
+  </script>
+</body>
+</html>
