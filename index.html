@@ -2581,6 +2581,120 @@
     });
   }
 })();
+</script><!-- ========================================================================== -->
+<!-- PLUG-IN: AUTO-ENABLE GREEN 'VERIFIED NOTICE' BADGE IN POST DETAILS         -->
+<!-- ========================================================================== -->
+<script id="sn-verified-badge-patch">
+(function() {
+  "use strict";
+
+  // Original openDetailedJobPost ko intercept aur enhance karega
+  const originalOpenDetailedJobPost = window.openDetailedJobPost;
+
+  window.openDetailedJobPost = function(postId) {
+    // Pehle normal post open function execute hoga
+    if (typeof originalOpenDetailedJobPost === "function") {
+      originalOpenDetailedJobPost(postId);
+    }
+
+    // Detail container render hote hi badge inject karega
+    setTimeout(() => {
+      const detailContainer = document.getElementById("postDetailContainer");
+      if (!detailContainer) return;
+
+      // Check karein agar badge pehle se maujood nahi hai
+      if (detailContainer.querySelector(".sn-verified-notice-badge")) return;
+
+      // Department tag dhoondhein
+      const deptBadge = detailContainer.querySelector("span[style*='background:#0284c7']");
+      if (deptBadge) {
+        const verifiedTag = document.createElement("span");
+        verifiedTag.className = "sn-verified-notice-badge";
+        verifiedTag.setAttribute("style", "font-size:0.75rem; background:#16a34a; color:#ffffff; padding:2px 8px; border-radius:4px; font-weight:900; margin-left:6px; display:inline-flex; align-items:center; gap:4px; vertical-align:middle; box-shadow:0 1px 3px rgba(0,0,0,0.15);");
+        verifiedTag.innerHTML = "✔ Verified Notice";
+
+        // Department tag ke theek bagal mein add kar dega
+        deptBadge.insertAdjacentElement("afterend", verifiedTag);
+      }
+    }, 20);
+  };
+})();
+</script><!-- ========================================================================== -->
+<!-- GOOGLE JOBS SCHEMA ENGINE + UNIQUE DIRECT HASH ROUTER                     -->
+<!-- ========================================================================== -->
+<script id="sn-google-schema-engine">
+(function() {
+  "use strict";
+
+  // Google Schema Injector Function
+  window.updateGoogleJobSchema = function(post) {
+    if (!post) return;
+
+    // Purana dynamic schema saaf karein
+    const existing = document.getElementById("job-posting-ld-json");
+    if (existing) existing.remove();
+
+    // schema.org JobPosting format
+    const schemaObj = {
+      "@context": "https://schema.org/",
+      "@type": "JobPosting",
+      "title": post.title,
+      "description": post.deep_details || post.overview || "Official government recruitment notification and examination details.",
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": post.dept || "Government Examination Authority",
+        "value": String(post.id)
+      },
+      "datePosted": (post.updatedAt || new Date().toISOString()).split("T")[0],
+      "validThrough": (post.dates && post.dates.end && post.dates.end !== "Closing Soon") ? post.dates.end : "2026-12-31",
+      "employmentType": "FULL_TIME",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": post.dept || "Government Recruitment Board",
+        "sameAs": (post.links && post.links.official_web) ? post.links.official_web : window.location.href
+      },
+      "jobLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "IN"
+        }
+      },
+      "directApply": true
+    };
+
+    const s = document.createElement("script");
+    s.id = "job-posting-ld-json";
+    s.type = "application/ld+json";
+    s.textContent = JSON.stringify(schemaObj, null, 2);
+    document.head.appendChild(s);
+  };
+
+  // Jab post view ho, schema inject karein aur hash URL set karein
+  const originalOpen = window.openDetailedJobPost;
+  window.openDetailedJobPost = function(postId) {
+    if (typeof originalOpen === "function") originalOpen(postId);
+
+    const post = (window.allJobsData || []).find(p => p.id === postId);
+    if (post) {
+      window.updateGoogleJobSchema(post);
+      window.location.hash = "job-" + postId;
+    }
+  };
+
+  // Direct incoming link handling (Google Widget se click aane par direct modal khulega)
+  window.addEventListener("load", function() {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith("#job-")) {
+      const id = parseInt(hash.replace("#job-", ""), 10);
+      setTimeout(() => {
+        if (typeof window.openDetailedJobPost === "function") {
+          window.openDetailedJobPost(id);
+        }
+      }, 350);
+    }
+  });
+})();
 </script>
 </body>
-    </html>
+</html>
