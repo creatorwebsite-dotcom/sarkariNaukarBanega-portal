@@ -1663,6 +1663,70 @@
     }
 
     checkAuth();
-  </script>
+  </script><!-- ========================================================================== -->
+<!-- ADMIN PANEL: GOOGLE SCHEMA INSPECTOR & VALIDATOR MODAL                     -->
+<!-- ========================================================================== -->
+<div id="schemaPreviewModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:99999; align-items:center; justify-content:center; padding:16px;">
+  <div style="background:#fff; border-radius:10px; max-width:700px; width:100%; max-height:85vh; display:flex; flex-direction:column; box-shadow:0 10px 25px rgba(0,0,0,0.3); overflow:hidden;">
+    <div style="padding:14px 18px; background:#0f172a; color:#fff; display:flex; justify-content:space-between; align-items:center;">
+      <h3 style="margin:0; font-size:1rem; font-weight:700;">🔍 Google Schema (JSON-LD) Inspector</h3>
+      <button onclick="document.getElementById('schemaPreviewModal').style.display='none'" style="background:none; border:none; color:#fff; font-size:1.2rem; cursor:pointer;">&times;</button>
+    </div>
+    <div style="padding:16px; overflow-y:auto; flex:1;">
+      <p style="margin:0 0 8px; font-size:0.82rem; color:#64748b;">This machine-readable payload is dynamically served to Googlebot for the Google Jobs Widget:</p>
+      <pre id="schemaJsonCode" style="background:#f1f5f9; padding:12px; border-radius:6px; font-size:0.75rem; color:#0f172a; overflow-x:auto; margin:0; line-height:1.4;"></pre>
+    </div>
+    <div style="padding:12px 18px; background:#f8fafc; border-top:1px solid #e2e8f0; display:flex; justify-content:space-between; align-items:center;">
+      <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener noreferrer" style="font-size:0.8rem; color:#2563eb; text-decoration:none; font-weight:700;">
+        Open Google Rich Results Tester &rarr;
+      </a>
+      <button onclick="navigator.clipboard.writeText(document.getElementById('schemaJsonCode').textContent); alert('Schema JSON Copied!');" style="background:#0284c7; color:#fff; border:none; padding:8px 14px; border-radius:6px; font-weight:700; font-size:0.8rem; cursor:pointer;">
+        📋 Copy JSON
+      </button>
+    </div>
+  </div>
+</div>
+
+<script id="admin-schema-preview-handler">
+(function() {
+  "use strict";
+
+  // Admin global inspect function
+  window.inspectPostSchema = function(postId) {
+    const post = (window.allJobsData || []).find(p => p.id === postId);
+    if (!post) {
+      alert("Post not found");
+      return;
+    }
+
+    const payload = {
+      "@context": "https://schema.org/",
+      "@type": "JobPosting",
+      "title": post.title,
+      "description": post.deep_details || post.overview || "",
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": post.dept || "Government Board",
+        "value": String(post.id)
+      },
+      "datePosted": (post.updatedAt || new Date().toISOString()).split("T")[0],
+      "validThrough": (post.dates && post.dates.end && post.dates.end !== "Closing Soon") ? post.dates.end : "2026-12-31",
+      "employmentType": "FULL_TIME",
+      "hiringOrganization": {
+        "@type": "Organization",
+        "name": post.dept || "Government Board"
+      },
+      "jobLocation": {
+        "@type": "Place",
+        "address": { "@type": "PostalAddress", "addressCountry": "IN" }
+      },
+      "directApply": true
+    };
+
+    document.getElementById("schemaJsonCode").textContent = JSON.stringify(payload, null, 2);
+    document.getElementById("schemaPreviewModal").style.display = "flex";
+  };
+})();
+</script>
 </body>
 </html>
