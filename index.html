@@ -2741,6 +2741,79 @@ window.addEventListener("load", async function() {
     console.error("Auto-loader error:", err);
   }
 });
+</script><script>
+// ULTIMATE FORCE-LOADER & DIAGNOSTIC PATCH
+(function() {
+  async function forceLoadJobs() {
+    try {
+      const res = await fetch("jobs_database.json?t=" + Date.now());
+      if (!res.ok) {
+        console.warn("JSON file not found:", res.status);
+        return;
+      }
+      const db = await res.json();
+      const posts = Array.isArray(db) ? db : (db.posts || db.data || []);
+      if (!posts.length) return;
+
+      window.livePublishedPosts = posts;
+
+      const boxMap = {
+        'listLatestJobs': ['latest', 'job', 'vacancy', 'recruitment', 'online form'],
+        'listResults': ['result', 'merit', 'cutoff', 'score'],
+        'listAdmitCards': ['admit', 'hall', 'call letter', 'exam date'],
+        'listAnswerKeys': ['answer', 'key'],
+        'listSyllabus': ['syllabus', 'pattern', 'curriculum'],
+        'listAdmission': ['admission', 'counselling', 'entrance']
+      };
+
+      const renderBoxes = () => {
+        Object.keys(boxMap).forEach(boxId => {
+          const container = document.getElementById(boxId);
+          if (!container) return;
+
+          // Agar box mein pehle se links aa chuke hain toh dobara mat chhedo
+          if (container.querySelectorAll('a').length > 0) return;
+
+          const keywords = boxMap[boxId];
+          let matched = posts.filter(p => {
+            const cat = String(p.category || p.type || p.section || '').toLowerCase();
+            const title = String(p.title || p.name || '').toLowerCase();
+            return keywords.some(k => cat.includes(k) || title.includes(k));
+          });
+
+          // Fallback: Agar Latest Jobs mein category match na ho, toh top 10 posts dikha do
+          if (boxId === 'listLatestJobs' && matched.length === 0) {
+            matched = posts;
+          }
+
+          if (matched.length > 0) {
+            container.innerHTML = matched.slice(0, 10).map(p => `
+              <li style="padding: 8px 6px; border-bottom: 1px solid rgba(0,0,0,0.08); list-style: none; text-align: left;">
+                <a href="${p.apply_link || p.link || p.url || '#'}" target="_blank" style="text-decoration: none; color: #1e40af; font-weight: 600; font-size: 13.5px; display: block;">
+                  🔥 ${p.title || p.post_title || 'New Update'}
+                </a>
+                <span style="font-size: 11px; color: #64748b;">📅 ${p.post_date || p.date || 'Latest'}</span>
+              </li>
+            `).join('');
+          }
+        });
+      };
+
+      // Turant chalao aur 1.5s, 3s baad dobara check karo taaki koi overwrite na kar sake
+      renderBoxes();
+      setTimeout(renderBoxes, 1500);
+      setTimeout(renderBoxes, 3500);
+    } catch (err) {
+      console.error("Force-Loader Error:", err);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", forceLoadJobs);
+  } else {
+    forceLoadJobs();
+  }
+})();
 </script>
 </body>
 </html>
