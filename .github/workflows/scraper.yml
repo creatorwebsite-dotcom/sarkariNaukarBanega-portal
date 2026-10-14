@@ -2,8 +2,12 @@ name: Automated Recruitment Sync
 
 on:
   schedule:
-    - cron: '0 3 * * *'  # Daily 8:30 AM IST
-  workflow_dispatch:      # Manual trigger button
+    - cron: '10 4 * * *'    # 9:40 AM IST
+    - cron: '20 8 * * *'    # 1:50 PM IST
+    - cron: '10 12 * * *'   # 5:40 PM IST
+    - cron: '10 13 * * *'   # 6:40 PM IST
+    - cron: '40 15 * * *'   # 9:10 PM IST
+  workflow_dispatch:      # Manual trigger button hamesha rahega
 
 jobs:
   scrape-and-sync:
@@ -32,5 +36,5 @@ jobs:
           git config --global user.name "SarkariPortal-Bot"
           git config --global user.email "bot@sarkarinaukar.com"
           git add jobs_database.json
-          git commit -m "Auto-sync recruitment feeds via Hybrid Engine" || exit 0
+          git commit -m "Auto-sync recruitment feeds via 5-time customized schedule" || exit 0
           git push
