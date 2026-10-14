@@ -1,5 +1,2365 @@
 {
   "tickerText": "Live Government Recruitment & Examination Updates Active 2026",
   "trendingCards": [],
-  "posts": []
+  "posts": [
+    {
+      "id": 1,
+      "title": "Anganwadi Recruitment",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Anganwadi Recruitment.",
+      "deep_details": "Candidates interested in Anganwadi Recruitment under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/anganwadi-recruitment/",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:51Z"
+    },
+    {
+      "id": 2,
+      "title": "Sarkari Result",
+      "category": "results",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Sarkari Result.",
+      "deep_details": "Candidates interested in Sarkari Result under category 'results' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/neet-ug-2026-stray-vacancy-round-registration-3073108",
+        "notif_pdf": "https://sarkariresult.freejobalert.com/",
+        "answer_key": "",
+        "cutoff_pdf": ""
+      },
+      "updatedAt": "2026-10-14T03:25:51Z"
+    },
+    {
+      "id": 3,
+      "title": "Interview Results",
+      "category": "results",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Interview Results.",
+      "deep_details": "Candidates interested in Interview Results under category 'results' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/interview-results/",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:52Z"
+    },
+    {
+      "id": 4,
+      "title": "India Post GDS Result 2026 Out",
+      "category": "results",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for India Post GDS Result 2026 Out.",
+      "deep_details": "Candidates interested in India Post GDS Result 2026 Out under category 'results' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/india-post-gds-result-2026-3072113",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:52Z"
+    },
+    {
+      "id": 5,
+      "title": "RRB 3,548 NTPC Graduate 06/2026 Online Form",
+      "category": "latest_jobs",
+      "badge": "HOT",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for RRB 3,548 NTPC Graduate 06/2026 Online Form.",
+      "deep_details": "Candidates interested in RRB 3,548 NTPC Graduate 06/2026 Online Form under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:53Z"
+    },
+    {
+      "id": 6,
+      "title": "Canara Bank 3500 Apprentice Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Canara Bank 3500 Apprentice Online Form 2026.",
+      "deep_details": "Candidates interested in Canara Bank 3500 Apprentice Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:53Z"
+    },
+    {
+      "id": 7,
+      "title": "CRPF 521 Sports Quota Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for CRPF 521 Sports Quota Online Form 2026.",
+      "deep_details": "Candidates interested in CRPF 521 Sports Quota Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:54Z"
+    },
+    {
+      "id": 8,
+      "title": "ITBP 126 Constable (GD) Sports Quota Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for ITBP 126 Constable (GD) Sports Quota Online Form 2026.",
+      "deep_details": "Candidates interested in ITBP 126 Constable (GD) Sports Quota Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:54Z"
+    },
+    {
+      "id": 9,
+      "title": "Bank of Baroda 1100 SO Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Bank of Baroda 1100 SO Online Form 2026.",
+      "deep_details": "Candidates interested in Bank of Baroda 1100 SO Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:55Z"
+    },
+    {
+      "id": 10,
+      "title": "CDAC 844 Various Posts Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for CDAC 844 Various Posts Online Form 2026.",
+      "deep_details": "Candidates interested in CDAC 844 Various Posts Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:55Z"
+    },
+    {
+      "id": 11,
+      "title": "DSSSB 641 Peon, PA and More Posts Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for DSSSB 641 Peon, PA and More Posts Online Form 2026.",
+      "deep_details": "Candidates interested in DSSSB 641 Peon, PA and More Posts Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:56Z"
+    },
+    {
+      "id": 12,
+      "title": "SSC GD Constable Result 2026",
+      "category": "results",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for SSC GD Constable Result 2026.",
+      "deep_details": "Candidates interested in SSC GD Constable Result 2026 under category 'results' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/ssc-gd-constable-result-2026-3072993",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:56Z"
+    },
+    {
+      "id": 13,
+      "title": "SBI PO Prelims Answer Key 2026",
+      "category": "answer_keys",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for SBI PO Prelims Answer Key 2026.",
+      "deep_details": "Candidates interested in SBI PO Prelims Answer Key 2026 under category 'answer_keys' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/sbi-po-prelims-answer-key-2026-3072677",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:56Z"
+    },
+    {
+      "id": 14,
+      "title": "UPSC NDA 2 Result 2026 Out",
+      "category": "results",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for UPSC NDA 2 Result 2026 Out.",
+      "deep_details": "Candidates interested in UPSC NDA 2 Result 2026 Out under category 'results' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/upsc-nda-2-result-2026-out-3072527",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:58Z"
+    },
+    {
+      "id": 15,
+      "title": "Naval Dockyard Karwar 210 Trade Apprentice Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Naval Dockyard Karwar 210 Trade Apprentice Online Form 2026.",
+      "deep_details": "Candidates interested in Naval Dockyard Karwar 210 Trade Apprentice Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:58Z"
+    },
+    {
+      "id": 16,
+      "title": "SSC Selection Phase 14 Answer Key 2026",
+      "category": "answer_keys",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for SSC Selection Phase 14 Answer Key 2026.",
+      "deep_details": "Candidates interested in SSC Selection Phase 14 Answer Key 2026 under category 'answer_keys' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/ssc-selection-phase-14-answer-key-2026-3072350",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:59Z"
+    },
+    {
+      "id": 17,
+      "title": "NICL 321 AO Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for NICL 321 AO Online Form 2026.",
+      "deep_details": "Candidates interested in NICL 321 AO Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:25:59Z"
+    },
+    {
+      "id": 18,
+      "title": "HAL 150 Junior Executive Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for HAL 150 Junior Executive Online Form 2026.",
+      "deep_details": "Candidates interested in HAL 150 Junior Executive Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:00Z"
+    },
+    {
+      "id": 19,
+      "title": "Supreme Court of India SPA Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Supreme Court of India SPA Online Form 2026.",
+      "deep_details": "Candidates interested in Supreme Court of India SPA Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:00Z"
+    },
+    {
+      "id": 20,
+      "title": "IFFCO Agriculture Graduate Trainee Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for IFFCO Agriculture Graduate Trainee Online Form 2026.",
+      "deep_details": "Candidates interested in IFFCO Agriculture Graduate Trainee Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:01Z"
+    },
+    {
+      "id": 21,
+      "title": "ICG CGEPT 365 Navik, Yantrik Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for ICG CGEPT 365 Navik, Yantrik Online Form 2026.",
+      "deep_details": "Candidates interested in ICG CGEPT 365 Navik, Yantrik Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:01Z"
+    },
+    {
+      "id": 22,
+      "title": "BGCL Executive Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for BGCL Executive Online Form 2026.",
+      "deep_details": "Candidates interested in BGCL Executive Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:01Z"
+    },
+    {
+      "id": 23,
+      "title": "CCRAS Fellowships Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for CCRAS Fellowships Online Form 2026.",
+      "deep_details": "Candidates interested in CCRAS Fellowships Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:02Z"
+    },
+    {
+      "id": 24,
+      "title": "Exim Bank Deputy Manager and Manager Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Exim Bank Deputy Manager and Manager Online Form 2026.",
+      "deep_details": "Candidates interested in Exim Bank Deputy Manager and Manager Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:02Z"
+    },
+    {
+      "id": 25,
+      "title": "LIC HFL Management Trainee Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for LIC HFL Management Trainee Online Form 2026.",
+      "deep_details": "Candidates interested in LIC HFL Management Trainee Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:03Z"
+    },
+    {
+      "id": 26,
+      "title": "MECL Executive Trainee Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for MECL Executive Trainee Online Form 2026.",
+      "deep_details": "Candidates interested in MECL Executive Trainee Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:03Z"
+    },
+    {
+      "id": 27,
+      "title": "HLL Lifecare Various Posts Online Form 2026",
+      "category": "latest_jobs",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for HLL Lifecare Various Posts Online Form 2026.",
+      "deep_details": "Candidates interested in HLL Lifecare Various Posts Online Form 2026 under category 'latest_jobs' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/csir-cgcri-project-associate-i-recruitment-2026-apply-online-3073286",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:03Z"
+    },
+    {
+      "id": 28,
+      "title": "UKSSSC Livestock Extension Officer Admit Card 2026",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for UKSSSC Livestock Extension Officer Admit Card 2026.",
+      "deep_details": "Candidates interested in UKSSSC Livestock Extension Officer Admit Card 2026 under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/uksssc-livestock-extension-officer-admit-card-2026-3073078",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:04Z"
+    },
+    {
+      "id": 29,
+      "title": "SSC JE Tier 1 Admit Card 2026 Soon",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for SSC JE Tier 1 Admit Card 2026 Soon.",
+      "deep_details": "Candidates interested in SSC JE Tier 1 Admit Card 2026 Soon under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/ssc-je-tier-1-admit-card-2026-3073046",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:06Z"
+    },
+    {
+      "id": 30,
+      "title": "IOB Security Guard Admit Card 2026",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for IOB Security Guard Admit Card 2026.",
+      "deep_details": "Candidates interested in IOB Security Guard Admit Card 2026 under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/iob-security-guard-admit-card-2026-3072963",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:07Z"
+    },
+    {
+      "id": 31,
+      "title": "UPCISB UP Cooperative Bank Various Post Admit Card 2026",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for UPCISB UP Cooperative Bank Various Post Admit Card 2026.",
+      "deep_details": "Candidates interested in UPCISB UP Cooperative Bank Various Post Admit Card 2026 under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/upcisb-up-cooperative-bank-various-post-admit-card-2026-3071865",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:07Z"
+    },
+    {
+      "id": 32,
+      "title": "MH SET Admit Card 2026 Soon",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for MH SET Admit Card 2026 Soon.",
+      "deep_details": "Candidates interested in MH SET Admit Card 2026 Soon under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/mh-set-admit-card-2026-3072848",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:07Z"
+    },
+    {
+      "id": 33,
+      "title": "Rajasthan High Court Stenographer Admit Card 2026",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Rajasthan High Court Stenographer Admit Card 2026.",
+      "deep_details": "Candidates interested in Rajasthan High Court Stenographer Admit Card 2026 under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/rajasthan-high-court-stenographer-admit-card-2026-3072826",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:08Z"
+    },
+    {
+      "id": 34,
+      "title": "DSSSB Assistant Superintendent PET Admit Card 2026",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for DSSSB Assistant Superintendent PET Admit Card 2026.",
+      "deep_details": "Candidates interested in DSSSB Assistant Superintendent PET Admit Card 2026 under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/dsssb-assistant-superintendent-pet-admit-card-2026-3072683",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:08Z"
+    },
+    {
+      "id": 35,
+      "title": "WCL Mining Sirdar and Assistant Foreman Admit Card 2026",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for WCL Mining Sirdar and Assistant Foreman Admit Card 2026.",
+      "deep_details": "Candidates interested in WCL Mining Sirdar and Assistant Foreman Admit Card 2026 under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/wcl-mining-sirdar-and-assistant-foreman-admit-card-2026-3072651",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:09Z"
+    },
+    {
+      "id": 36,
+      "title": "Delhi Police PEMT and DV Admit Card 2026",
+      "category": "admit_cards",
+      "badge": "HOT",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for Delhi Police PEMT and DV Admit Card 2026.",
+      "deep_details": "Candidates interested in Delhi Police PEMT and DV Admit Card 2026 under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": true,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/delhi-police-pemt-and-dv-admit-card-2026-3072400",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:09Z"
+    },
+    {
+      "id": 37,
+      "title": "JKSSB Junior Laboratory Technician & Driver Admit Card 2026",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for JKSSB Junior Laboratory Technician & Driver Admit Card 2026.",
+      "deep_details": "Candidates interested in JKSSB Junior Laboratory Technician & Driver Admit Card 2026 under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/jkssb-junior-laboratory-technician-and-driver-admit-card-2026-3072393",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:10Z"
+    },
+    {
+      "id": 38,
+      "title": "RRB Section Controller Admit Card 2026 Out",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for RRB Section Controller Admit Card 2026 Out.",
+      "deep_details": "Candidates interested in RRB Section Controller Admit Card 2026 Out under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/rrb-section-controller-admit-card-2026-3071705",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:10Z"
+    },
+    {
+      "id": 39,
+      "title": "PFRDA Grade A Admit Card 2026 Out",
+      "category": "admit_cards",
+      "badge": "NEW",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for PFRDA Grade A Admit Card 2026 Out.",
+      "deep_details": "Candidates interested in PFRDA Grade A Admit Card 2026 Out under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/pfrda-assistant-manager-admit-card-2026-3072084",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:10Z"
+    },
+    {
+      "id": 40,
+      "title": "IBPS Hindi Officer Admit Card 2026",
+      "category": "admit_cards",
+      "badge": "HOT",
+      "dept": "Government Recruitment Authority (FreeJobAlert)",
+      "scope": "central",
+      "state": "all",
+      "status": "published",
+      "overview": "Verified government recruitment notice for IBPS Hindi Officer Admit Card 2026.",
+      "deep_details": "Candidates interested in IBPS Hindi Officer Admit Card 2026 under category 'admit_cards' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications.",
+      "verified_notice": true,
+      "sections": {
+        "dates": true,
+        "fee": true,
+        "age": true,
+        "vacancy": true,
+        "physical": false,
+        "selection": true,
+        "instructions": true,
+        "links": true
+      },
+      "dates": {
+        "start": "Refer to official notice",
+        "end": "Closing Soon",
+        "exam": "As per schedule"
+      },
+      "fee": {
+        "gen_obc": "Check PDF",
+        "sc_st": "Check PDF"
+      },
+      "age": {
+        "min": "18 Years",
+        "max": "Refer to advertisement",
+        "relaxation": "As per Govt rules"
+      },
+      "vacancy": {
+        "total": "Refer to advertisement",
+        "eligibility": "Refer to official advertisement PDF"
+      },
+      "physical": {
+        "male_height": "Norms applicable",
+        "running": "As per criteria"
+      },
+      "selection": {
+        "process": "Computer Based Test / Written Exam, Document Verification."
+      },
+      "instructions": {
+        "details": "Verify photo specs and category certificates before applying."
+      },
+      "links": {
+        "apply": "https://www.freejobalert.com/articles/ibps-hindi-officer-admit-card-2026-3072077",
+        "notif_pdf": "https://slate.freejobalert.com/pdf-converter-editor/convert-pdf-to-word/",
+        "answer_key": "https://www.freejobalert.com/articles/rpsc-inspector-of-factories-answer-key-2026-3073263",
+        "cutoff_pdf": "",
+        "pdf_set": true
+      },
+      "updatedAt": "2026-10-14T03:26:11Z"
+    }
+  ]
 }
