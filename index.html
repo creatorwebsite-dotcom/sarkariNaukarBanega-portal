@@ -2695,6 +2695,52 @@
     }
   });
 })();
+</script><script>
+// MASTER AUTO-LOADER PATCH
+window.addEventListener("load", async function() {
+  try {
+    const res = await fetch("jobs_database.json?t=" + Date.now());
+    const db = await res.json();
+    const posts = Array.isArray(db) ? db : (db.posts || []);
+    window.livePublishedPosts = posts;
+    if (typeof window.renderCategoryMatrix === 'function') {
+      window.renderCategoryMatrix(posts);
+    }
+
+    const boxMap = {
+      'listLatestJobs': ['latest', 'job', 'vacancy', 'recruitment'],
+      'listResults': ['result', 'merit', 'cutoff'],
+      'listAdmitCards': ['admit', 'hall', 'exam date'],
+      'listAnswerKeys': ['answer', 'key'],
+      'listSyllabus': ['syllabus', 'pattern'],
+      'listAdmission': ['admission', 'counselling']
+    };
+
+    Object.keys(boxMap).forEach(boxId => {
+      const container = document.getElementById(boxId);
+      if (!container) return;
+
+      const keywords = boxMap[boxId];
+      const matched = posts.filter(p => {
+        const cat = (p.category || '').toLowerCase();
+        return keywords.some(k => cat.includes(k));
+      });
+
+      if (matched.length > 0) {
+        container.innerHTML = matched.slice(0, 10).map((p) => `
+          <li style="padding: 8px 6px; border-bottom: 1px solid rgba(0,0,0,0.08); list-style: none;">
+            <a href="${p.apply_link || p.link || p.url || '#'}" target="_blank" style="text-decoration: none; color: #1e40af; font-weight: 600; font-size: 13.5px; display: block;">
+              🔥 ${p.title}
+            </a>
+            <span style="font-size: 11px; color: #64748b;">📅 ${p.post_date || p.date || 'Latest'} | ${p.source || 'Official'}</span>
+          </li>
+        `).join('');
+      }
+    });
+  } catch (err) {
+    console.error("Auto-loader error:", err);
+  }
+});
 </script>
 </body>
 </html>
