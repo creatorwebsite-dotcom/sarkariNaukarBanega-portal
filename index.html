@@ -2696,123 +2696,174 @@
   });
 })();
 </script><script>
-// MASTER AUTO-LOADER PATCH
-window.addEventListener("load", async function() {
-  try {
-    const res = await fetch("jobs_database.json?t=" + Date.now());
-    const db = await res.json();
-    const posts = Array.isArray(db) ? db : (db.posts || []);
-    window.livePublishedPosts = posts;
-    if (typeof window.renderCategoryMatrix === 'function') {
-      window.renderCategoryMatrix(posts);
-    }
-
-    const boxMap = {
-      'listLatestJobs': ['latest', 'job', 'vacancy', 'recruitment'],
-      'listResults': ['result', 'merit', 'cutoff'],
-      'listAdmitCards': ['admit', 'hall', 'exam date'],
-      'listAnswerKeys': ['answer', 'key'],
-      'listSyllabus': ['syllabus', 'pattern'],
-      'listAdmission': ['admission', 'counselling']
-    };
-
-    Object.keys(boxMap).forEach(boxId => {
-      const container = document.getElementById(boxId);
-      if (!container) return;
-
-      const keywords = boxMap[boxId];
-      const matched = posts.filter(p => {
-        const cat = (p.category || '').toLowerCase();
-        return keywords.some(k => cat.includes(k));
-      });
-
-      if (matched.length > 0) {
-        container.innerHTML = matched.slice(0, 10).map((p) => `
-          <li style="padding: 8px 6px; border-bottom: 1px solid rgba(0,0,0,0.08); list-style: none;">
-            <a href="${p.apply_link || p.link || p.url || '#'}" target="_blank" style="text-decoration: none; color: #1e40af; font-weight: 600; font-size: 13.5px; display: block;">
-              🔥 ${p.title}
-            </a>
-            <span style="font-size: 11px; color: #64748b;">📅 ${p.post_date || p.date || 'Latest'} | ${p.source || 'Official'}</span>
-          </li>
-        `).join('');
-      }
-    });
-  } catch (err) {
-    console.error("Auto-loader error:", err);
-  }
-});
-</script><script>
-// ULTIMATE FORCE-LOADER & DIAGNOSTIC PATCH
+// ULTIMATE FULL-PORTAL AUTO-FILLER & INTERNAL MODAL PATCH
 (function() {
-  async function forceLoadJobs() {
+  async function fillEntireWebsite() {
     try {
       const res = await fetch("jobs_database.json?t=" + Date.now());
-      if (!res.ok) {
-        console.warn("JSON file not found:", res.status);
-        return;
-      }
+      if (!res.ok) return;
       const db = await res.json();
-      const posts = Array.isArray(db) ? db : (db.posts || db.data || []);
-      if (!posts.length) return;
+      let posts = Array.isArray(db) ? db : (db.posts || db.data || []);
+      if (!posts || posts.length === 0) return;
+
+      // Clean titles & remove other website names completely
+      posts = posts.map((p, idx) => {
+        const cleanTitle = String(p.title || p.post_title || "Latest Govt Notification 2026")
+          .replace(/IndGovtJobs|FreeJobAlert|SarkariResult/gi, "")
+          .trim();
+        return {
+          ...p,
+          id: p.id || ("sn_post_" + idx),
+          title: cleanTitle,
+          source: "Sarkari Naukar Official",
+          cleanDate: p.post_date || p.date || "Oct 2026"
+        };
+      });
 
       window.livePublishedPosts = posts;
 
-      const boxMap = {
-        'listLatestJobs': ['latest', 'job', 'vacancy', 'recruitment', 'online form'],
-        'listResults': ['result', 'merit', 'cutoff', 'score'],
-        'listAdmitCards': ['admit', 'hall', 'call letter', 'exam date'],
-        'listAnswerKeys': ['answer', 'key'],
-        'listSyllabus': ['syllabus', 'pattern', 'curriculum'],
-        'listAdmission': ['admission', 'counselling', 'entrance']
+      // 1. INTERNAL DETAIL POPUP (Koi bahar ki website nahi khulegi)
+      window.openInternalJobView = function(idx) {
+        const p = posts[idx] || posts[0];
+        if (!p) return;
+
+        let modal = document.getElementById("snCustomInternalModal");
+        if (!modal) {
+          modal = document.createElement("div");
+          modal.id = "snCustomInternalModal";
+          modal.style.cssText = "position:fixed;inset:0;background:rgba(15,23,42,0.8);z-index:999999;display:flex;align-items:center;justify-content:center;padding:14px;backdrop-filter:blur(3px);";
+          document.body.appendChild(modal);
+        }
+
+        const rawDesc = p.description || p.summary || p.short_info || "Eligible candidates can check the official notification, age limit, qualification, selection process, and apply online from the direct link below.";
+        const cleanDesc = String(rawDesc).replace(/IndGovtJobs|FreeJobAlert|SarkariResult/gi, "Sarkari Naukar Banega");
+
+        modal.innerHTML = `
+          <div style="background:#ffffff;color:#0f172a;width:100%;max-width:540px;border-radius:16px;max-height:88vh;overflow-y:auto;padding:20px;box-shadow:0 20px 40px rgba(0,0,0,0.45);font-family:system-ui,sans-serif;">
+            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #f1f5f9;padding-bottom:12px;margin-bottom:14px;">
+              <span style="background:#dcfce7;color:#166534;font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:6px;">✅ SARKARI NAUKAR VERIFIED</span>
+              <button onclick="document.getElementById('snCustomInternalModal').style.display='none'" style="background:#ef4444;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-weight:700;cursor:pointer;">✕ Close</button>
+            </div>
+
+            <h3 style="font-size:18px;font-weight:800;color:#1e3a8a;margin:0 0 12px 0;line-height:1.4;">${p.title}</h3>
+
+            <table style="width:100%;border-collapse:collapse;margin-bottom:16px;font-size:13.5px;background:#f8fafc;border-radius:10px;overflow:hidden;border:1px solid #e2e8f0;">
+              <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:9px 12px;font-weight:700;color:#475569;width:42%;">📅 Update Date</td>
+                <td style="padding:9px 12px;color:#0f172a;font-weight:600;">${p.cleanDate}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:9px 12px;font-weight:700;color:#475569;">📂 Section</td>
+                <td style="padding:9px 12px;color:#2563eb;font-weight:700;text-transform:uppercase;">${p.category || 'Latest Notification'}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:9px 12px;font-weight:700;color:#475569;">🏢 Authority</td>
+                <td style="padding:9px 12px;color:#0f172a;font-weight:600;">${p.organization || p.department || p.title.split(' ').slice(0, 3).join(' ')}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:9px 12px;font-weight:700;color:#475569;">⏳ Application Status</td>
+                <td style="padding:9px 12px;color:#16a34a;font-weight:700;">Active / Check Notice</td>
+              </tr>
+            </table>
+
+            <div style="background:#eff6ff;border-left:4px solid #2563eb;padding:12px;border-radius:6px;font-size:13.5px;line-height:1.6;color:#1e293b;margin-bottom:18px;">
+              <strong>📋 Important Details:</strong><br>
+              ${cleanDesc}
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <button onclick="document.getElementById('snCustomInternalModal').style.display='none'" style="background:#1e3a8a;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;">
+                ✓ Done / Back to All Updates
+              </button>
+            </div>
+          </div>
+        `;
+        modal.style.display = "flex";
       };
 
-      const renderBoxes = () => {
-        Object.keys(boxMap).forEach(boxId => {
-          const container = document.getElementById(boxId);
-          if (!container) return;
+      // 2. FILL BREAKING NEWS TICKER
+      const tickerEl = document.getElementById("tickerText") || document.querySelector("marquee, [class*='ticker']");
+      if (tickerEl && posts.length > 0) {
+        tickerEl.innerHTML = posts.slice(0, 6).map((p, i) =>
+          `<span onclick="window.openInternalJobView(${i})" style="cursor:pointer;margin-right:28px;font-weight:700;">🔥 ${p.title}</span>`
+        ).join(" • ");
+      }
 
-          // Agar box mein pehle se links aa chuke hain toh dobara mat chhedo
-          if (container.querySelectorAll('a').length > 0) return;
+      // 3. FILL 6 TRENDING COLORED BOXES ("-- Apply Online")
+      const allDivs = Array.from(document.querySelectorAll("div, a, button"));
+      const trendingBoxes = allDivs.filter(el => el.innerText && el.innerText.includes("Apply Online") && el.children.length <= 3).slice(0, 6);
+      trendingBoxes.forEach((box, idx) => {
+        const p = posts[idx];
+        if (!p) return;
+        const shortName = p.title.length > 36 ? p.title.substring(0, 36) + "..." : p.title;
+        box.style.cursor = "pointer";
+        box.onclick = () => window.openInternalJobView(idx);
+        box.innerHTML = `
+          <div style="font-weight:800;font-size:12.5px;color:#0f172a;line-height:1.25;margin-bottom:4px;">${shortName}</div>
+          <div style="font-weight:700;font-size:11px;color:#dc2626;">Apply Online →</div>
+        `;
+      });
 
-          const keywords = boxMap[boxId];
-          let matched = posts.filter(p => {
-            const cat = String(p.category || p.type || p.section || '').toLowerCase();
-            const title = String(p.title || p.name || '').toLowerCase();
-            return keywords.some(k => cat.includes(k) || title.includes(k));
-          });
+      // 4. SMART FILL ALL 6 CATEGORY BOXES (Koi bhi box khali nahi rahega!)
+      const boxRules = [
+        { id: 'listLatestJobs', keys: ['job', 'vacancy', 'recruitment', 'form', 'apply', 'post', 'trainee', 'officer', 'constable', 'clerk'], fallbackStart: 0 },
+        { id: 'listResults', keys: ['result', 'merit', 'cutoff', 'score', 'selected', 'marks', 'out'], fallbackStart: 8 },
+        { id: 'listAdmitCards', keys: ['admit', 'hall', 'call letter', 'exam date', 'city', 'schedule', 'interview'], fallbackStart: 16 },
+        { id: 'listAnswerKeys', keys: ['answer', 'key', 'objection', 'response', 'paper', 'solution'], fallbackStart: 24 },
+        { id: 'listSyllabus', keys: ['syllabus', 'pattern', 'curriculum', 'selection', 'notification', 'pdf', 'detail'], fallbackStart: 32 },
+        { id: 'listAdmission', keys: ['admission', 'counselling', 'entrance', 'neet', 'jee', 'cuet', 'college', 'university', 'fellowship'], fallbackStart: 40 }
+      ];
 
-          // Fallback: Agar Latest Jobs mein category match na ho, toh top 10 posts dikha do
-          if (boxId === 'listLatestJobs' && matched.length === 0) {
-            matched = posts;
-          }
+      boxRules.forEach(rule => {
+        const container = document.getElementById(rule.id);
+        if (!container) return;
 
-          if (matched.length > 0) {
-            container.innerHTML = matched.slice(0, 10).map(p => `
-              <li style="padding: 8px 6px; border-bottom: 1px solid rgba(0,0,0,0.08); list-style: none; text-align: left;">
-                <a href="${p.apply_link || p.link || p.url || '#'}" target="_blank" style="text-decoration: none; color: #1e40af; font-weight: 600; font-size: 13.5px; display: block;">
-                  🔥 ${p.title || p.post_title || 'New Update'}
-                </a>
-                <span style="font-size: 11px; color: #64748b;">📅 ${p.post_date || p.date || 'Latest'}</span>
-              </li>
-            `).join('');
+        // Pehle category ya title ke keyword se match karo
+        let matched = [];
+        posts.forEach((p, idx) => {
+          const textToSearch = ((p.category || '') + ' ' + (p.title || '')).toLowerCase();
+          if (rule.keys.some(k => textToSearch.includes(k))) {
+            matched.push({ post: p, index: idx });
           }
         });
-      };
 
-      // Turant chalao aur 1.5s, 3s baad dobara check karo taaki koi overwrite na kar sake
-      renderBoxes();
-      setTimeout(renderBoxes, 1500);
-      setTimeout(renderBoxes, 3500);
-    } catch (err) {
-      console.error("Force-Loader Error:", err);
+        // Agar kisi box (jaise Admit Card / Answer Key / Syllabus) mein kam post milein,
+        // toh database ke baaki posts se us box ko bhar do taaki "No updates yet" bilkul na aaye!
+        if (matched.length < 7) {
+          const usedIndices = new Set(matched.map(m => m.index));
+          for (let i = 0; i < posts.length && matched.length < 10; i++) {
+            const pickIdx = (rule.fallbackStart + i) % posts.length;
+            if (!usedIndices.has(pickIdx)) {
+              matched.push({ post: posts[pickIdx], index: pickIdx });
+              usedIndices.add(pickIdx);
+            }
+          }
+        }
+
+        container.innerHTML = matched.slice(0, 10).map(({ post, index }) => `
+          <li style="padding: 9px 6px; border-bottom: 1px solid rgba(0,0,0,0.08); list-style: none; text-align: left;">
+            <a href="javascript:void(0)" onclick="window.openInternalJobView(${index})" style="text-decoration: none; color: #1e3a8a; font-weight: 700; font-size: 13.2px; display: block; line-height: 1.35;">
+              🔥 ${post.title}
+            </a>
+            <span style="font-size: 11px; color: #15803d; font-weight: 600;">📅 ${post.cleanDate} | ✅ Verified Update</span>
+          </li>
+        `).join('');
+      });
+
+    } catch (e) {
+      console.error("Full Website Filler Error:", e);
     }
   }
 
+  // Page load par aur 1.5s, 3s baad chalao taaki 100% saare boxes bhare rahein
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", forceLoadJobs);
+    document.addEventListener("DOMContentLoaded", fillEntireWebsite);
   } else {
-    forceLoadJobs();
+    fillEntireWebsite();
   }
+  window.addEventListener("load", fillEntireWebsite);
+  setTimeout(fillEntireWebsite, 1200);
+  setTimeout(fillEntireWebsite, 3000);
 })();
 </script>
 </body>
