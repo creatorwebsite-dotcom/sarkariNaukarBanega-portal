@@ -1369,7 +1369,7 @@
           const t = document.getElementById("tickerTrack");
           if (t) t.textContent = db.tickerText;
         }
-        livePublishedPosts = (db.posts || []).filter(p => p.status === "published");
+        livePublishedPosts = (Array.isArray(db) ? db : (db.posts || [])).filter(p => p.status === "published");
         renderCategoryMatrix(livePublishedPosts);
         renderTrendingBlocks(db.trendingCards || []);
       }
@@ -1392,7 +1392,7 @@
         if (!container) return;
         container.innerHTML = "";
 
-        const catPosts = posts.filter(p => p.category === cat);
+        const catPosts = posts.filter(p => (p.category || '').toLowerCase().replace(/[\s_-]+/g, '') === cat.toLowerCase().replace(/[\s_-]+/g, ''));
         const isExpanded = window.categoryExpandedState[cat];
         const displayPosts = isExpanded ? catPosts : catPosts.slice(0, 7);
 
@@ -2158,7 +2158,7 @@
       if (!container) return;
       container.innerHTML = "";
 
-      const catPosts = posts.filter(p => p.category === cat);
+      const catPosts = posts.filter(p => (p.category || '').toLowerCase().replace(/[\s_-]+/g, '') === cat.toLowerCase().replace(/[\s_-]+/g, ''));
       const isExpanded = window.categoryExpandedState ? window.categoryExpandedState[cat] : false;
       const displayPosts = isExpanded ? catPosts : catPosts.slice(0, 7);
 
