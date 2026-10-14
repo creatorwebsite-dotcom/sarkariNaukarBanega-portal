@@ -1,233 +1,272 @@
 import os
+import re
 import json
 import time
-import re
+import random
+import hashlib
 import urllib.request
-import urllib.parse
+import urllib.error
+import ssl
+from datetime import datetime
 from bs4 import BeautifulSoup
 
-DB_FILE = "jobs_database.json"
+# SSL verification bypass for government/older portals
+ssl_context = ssl.create_default_context()
+ssl_context.check_hostname = False
+ssl_context.verify_mode = ssl.CERT_NONE
+
+DATABASE_FILE = "jobs_database.json"
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 
-TARGET_PORTALS = [
+# 8 Top Trusted Recruitment Sources
+SOURCES = [
     {"name": "SarkariResult", "url": "https://www.sarkariresult.com/"},
     {"name": "FreeJobAlert", "url": "https://www.freejobalert.com/"},
-    {"name": "MySarkariNaukri", "url": "https://www.mysarkarinaukri.com/"},
     {"name": "RojgarResult", "url": "https://www.rojgarresult.com/"},
     {"name": "SarkariExam", "url": "https://www.sarkariexam.com/"},
-    {"name": "Jobriya", "url": "https://www.jobriya.in/"},
     {"name": "IndGovtJobs", "url": "https://www.indgovtjobs.in/"},
-    {"name": "Aglasem", "url": "https://career.aglasem.com/"}
+    {"name": "FreshersNow", "url": "https://www.freshersnow.com/government-jobs-india/"},
+    {"name": "CareerPower", "url": "https://www.careerpower.in/upcoming-government-exams.html"},
+    {"name": "JagranJosh", "url": "https://www.jagranjosh.com/articles-sarkari-naukri-1288164377-1"}
 ]
 
-UPDATE_KEYWORDS = [
-    "extended", "re-open", "last date extended", "corrigendum",
-    "answer key", "ans key", "response sheet", "objection",
-    "cutoff", "cut off", "marks", "score card", "merit list",
-    "admit card", "hall ticket", "exam city", "exam date",
-    "revised", "cancellation", "result declared"
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 14_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15"
 ]
-
-def load_database():
-    if os.path.exists(DB_FILE):
-        try:
-            with open(DB_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            pass
-    return {
-        "tickerText": "Live Government Recruitment & Examination Updates Active 2026",
-        "trendingCards": [],
-        "posts": []
-    }
-
-def save_database(db):
-    with open(DB_FILE, "w", encoding="utf-8") as f:
-        json.dump(db, f, indent=2, ensure_ascii=False)
-
-def clean_text(text):
-    if not text:
-        return ""
-    t = re.sub(r'[\r\n\t]+', ' ', text).strip()
-    return re.sub(r'\s+', ' ', t)
-
-def extract_core_exam_key(title):
-    t = clean_text(title).lower()
-    t = re.sub(r'[^a-z0-9 ]', '', t)
-    ignore = [
-        "online", "form", "apply", "recruitment", "bharti", "post", "posts", 
-        "extended", "last", "date", "answer", "key", "result", "cutoff", 
-        "admit", "card", "2025", "2026", "notice", "out"
-    ]
-    tokens = [w for w in t.split() if w not in ignore]
-    return " ".join(tokens[:4])
 
 def detect_category(title):
     t = title.lower()
-    if any(k in t for k in ["result", "merit list", "score card"]):
-        return "results"
-    elif any(k in t for k in ["admit card", "hall ticket", "exam city"]):
-        return "admit_cards"
-    elif any(k in t for k in ["answer key", "ans key", "response sheet"]):
-        return "answer_keys"
+    if any(k in t for k in ["result", "merit list", "cutoff", "cut off", "score card", "marks"]):
+        return "Result"
+    elif any(k in t for k in ["admit card", "hall ticket", "call letter", "exam date", "exam city"]):
+        return "Admit Card"
+    elif any(k in t for k in ["answer key", "objection"]):
+        return "Answer Key"
     elif any(k in t for k in ["syllabus", "exam pattern"]):
-        return "syllabus"
-    elif any(k in t for k in ["admission", "entrance"]):
-        return "admissions"
-    return "latest_jobs"
+        return "Syllabus"
+    elif any(k in t for k in ["admission", "counselling", "entrance"]):
+        return "Admission"
+    return "Latest Jobs"
 
-def generate_hybrid_overview(title, category):
-    default_quick = f"Verified government recruitment notice for {clean_text(title)}."
-    default_deep = f"Candidates interested in {clean_text(title)} under category '{category}' should verify all qualifications, reservation guidelines, and application schedules directly against the official notification PDF before submitting applications."
+# =====================================================================
+# OPTION A: SMART HUMAN STRUCTURING & SEO FORMATTING ENGINE (ALWAYS ON)
+# =====================================================================
+def generate_option_a_content(title, category, source_name):
+    today_str = datetime.now().strftime("%d %B %Y")
+    clean_title = re.sub(r'\s+', ' ', title).strip()
 
-    if not GEMINI_API_KEY:
-        return default_quick, default_deep
+    intro_templates = [
+        f"Sarkari naukri ki taiyari kar rahe candidates ke liye badi khabar hai. Hal hi mein <strong>{clean_title}</strong> ke tahat naya official update jari kiya gaya hai. Agar aap bhi is bharti prakriya ka hissa banna chahte hain, toh niche di gayi puri jankari dhyan se padhein.",
+        f"Desh bhar ke yuvaon ke liye ek aur shandaar mauka samne aaya hai. <strong>{clean_title}</strong> ka official notification aur zaroori details ab uplabdh hain. Yahan humne aapki suvidha ke liye eligibility, age limit aur apply karne ka pura tarika asaan shabdon mein samjhaya hai.",
+        f"Competitive exams ki taiyari karne wale abhyarthiyon ke liye mahatvapurna update: <strong>{clean_title}</strong> se judi taaza jankari jari ho chuki hai. Aaiye jante hain is notification ki mukhya baatein aur aavedan ki prakriya."
+    ]
 
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
-    prompt = f"""
-You are an expert government recruitment analyst.
-Generate two clear sections for recruitment: '{title}' in category '{category}', separated by '---SPLIT---':
-1. QUICK_OVERVIEW: A punchy, 1-2 sentence candidate-friendly summary (max 25 words).
-2. DEEP_ANALYSIS: A structured 2-paragraph briefing covering key vacancy highlights, selection stages flow, and common form-filling errors to avoid.
-Do not use markdown headers (# or ##) or quotation marks.
+    intro = random.choice(intro_templates)
+
+    structured_block = f"""
+<div class="human-article-box">
+    <p>{intro}</p>
+    <h4>📋 Notification Overview ({today_str})</h4>
+    <ul>
+        <li><strong>Post / Update Name:</strong> {clean_title}</li>
+        <li><strong>Category:</strong> {category}</li>
+        <li><strong>Application Mode:</strong> Online (Official Portal ke madhyam se)</li>
+        <li><strong>Selection Process:</strong> Written Exam / Skill Test / Document Verification (Post ke anusar)</li>
+    </ul>
+    <h4>💡 Candidates Ke Liye Zaroori Salah (Expert Tips)</h4>
+    <p>Form bharte samay ya result/admit card check karte waqt apna <strong>Original Notification PDF</strong> ek baar zaroor verify karein. Apne sabhi documents jaise Aadhar Card, Educational Certificates, Photo aur Signature pehle se scan karke rakhein taaki aakhri tarikh ke server rush se bacha ja sake.</p>
+    <h4>✅ Step-by-Step Kaise Check / Apply Karein?</h4>
+    <ol>
+        <li>Sabse pehle niche diye gaye <strong>Official Link</strong> par click karein.</li>
+        <li>Home page par <em>"{clean_title}"</em> wale section ko open karein.</li>
+        <li>Apni basic details aur qualification dhyanpurvak bharein.</li>
+        <li>Final submit karne ke baad confirmation page ka printout ya PDF apne phone/computer mein zaroor save kar lein.</li>
+    </ol>
+</div>
 """
-    payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode("utf-8")
+    return structured_block.strip()
 
-    try:
-        req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=10) as res:
-            res_data = json.loads(res.read().decode("utf-8"))
-            generated = res_data["candidates"][0]["content"]["parts"][0]["text"].strip()
-            if "---SPLIT---" in generated:
-                parts = generated.split("---SPLIT---")
-                return clean_text(parts[0]), clean_text(parts[1])
-            return clean_text(generated[:140]), clean_text(generated)
-    except Exception as e:
-        print(f"Fallback to Option A: {e}")
-        return default_quick, default_deep
+# =====================================================================
+# OPTION B: GEMINI AI NATURAL HUMAN WRITER (WITH MULTI-MODEL AUTO-FIX)
+# =====================================================================
+def generate_option_b_ai_summary(title, category):
+    if not GEMINI_API_KEY:
+        return None
 
-def resolve_direct_pdf_links(target_url):
-    links = {"apply": target_url, "notif_pdf": target_url, "answer_key": "", "cutoff_pdf": ""}
-    if target_url.lower().endswith(".pdf"):
-        links["notif_pdf"] = target_url
-        return links
+    prompt = (
+        f"You are an experienced Indian career counselor and human content writer. "
+        f"Write a natural, original, human-sounding 2-paragraph editorial overview in simple Hinglish/English "
+        f"for the recruitment update: '{title}' (Category: {category}). "
+        f"Do not sound robotic. Explain why this update matters for aspirants and give 2 practical preparation or application tips. "
+        f"Keep it concise and SEO-friendly."
+    )
 
-    try:
-        req = urllib.request.Request(target_url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'})
-        with urllib.request.urlopen(req, timeout=5) as res:
-            soup = BeautifulSoup(res.read().decode('utf-8', errors='ignore'), 'html.parser')
-            for a in soup.find_all('a', href=True):
-                h = a['href'].strip()
-                txt = clean_text(a.get_text()).lower()
-                if not h.startswith("http"):
-                    h = urllib.parse.urljoin(target_url, h)
-                if h.lower().endswith(".pdf") or "pdf" in txt:
-                    if any(k in txt for k in ["answer", "ans key"]):
-                        links["answer_key"] = h
-                    elif any(k in txt for k in ["cut off", "cutoff"]):
-                        links["cutoff_pdf"] = h
-                    elif not links.get("pdf_set"):
-                        links["notif_pdf"] = h
-                        links["pdf_set"] = True
-                if any(k in txt for k in ["apply online", "registration"]):
-                    links["apply"] = h
-    except Exception:
-        pass
-    return links
+    payload = json.dumps({
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "temperature": 0.7,
+            "maxOutputTokens": 300
+        }
+    }).encode("utf-8")
 
-def scan_all_portals():
-    feed = []
-    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'}
-    for p in TARGET_PORTALS:
+    # Multiple latest Gemini models to completely prevent 404 Not Found errors
+    models_to_try = [
+        "gemini-2.5-flash",
+        "gemini-2.0-flash",
+        "gemini-1.5-flash-latest"
+    ]
+
+    for model_name in models_to_try:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={GEMINI_API_KEY}"
+        req = urllib.request.Request(
+            url,
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST"
+        )
         try:
-            req = urllib.request.Request(p["url"], headers=headers)
-            with urllib.request.urlopen(req, timeout=8) as res:
-                soup = BeautifulSoup(res.read().decode('utf-8', errors='ignore'), 'html.parser')
-                for a in soup.find_all('a', href=True):
-                    title = clean_text(a.get_text())
-                    href = a['href'].strip()
-                    if not href or href.startswith("javascript:") or href == "#":
-                        continue
-                    if not href.startswith("http"):
-                        href = urllib.parse.urljoin(p["url"], href)
-                    triggers = ["recruitment", "bharti", "online form", "admit card", "result", "answer key", "syllabus", "vacancy", "extended"]
-                    if len(title) >= 14 and any(t in title.lower() for t in triggers):
-                        feed.append({"source": p["name"], "title": title, "link": href, "category": detect_category(title)})
-        except Exception as e:
-            print(f"Skipping {p['name']}: {e}")
-    return feed
+            with urllib.request.urlopen(req, context=ssl_context, timeout=15) as response:
+                res_data = json.loads(response.read().decode("utf-8"))
+                candidates = res_data.get("candidates", [])
+                if candidates:
+                    parts = candidates[0].get("content", {}).get("parts", [])
+                    if parts and "text" in parts[0]:
+                        ai_text = parts[0]["text"].strip()
+                        return f"<div class='ai-editorial'><p>{ai_text}</p></div>"
+        except urllib.error.HTTPError as e:
+            if e.code == 404:
+                continue  # Try next model automatically
+            elif e.code == 429:
+                time.sleep(2)
+                break
+            else:
+                break
+        except Exception:
+            break
+
+    return None
+
+# =====================================================================
+# HYBRID ENGINE: COMBINING OPTION B + OPTION A FOR HIGH SEO RATING
+# =====================================================================
+def build_hybrid_human_post(title, link, source_name, use_ai=True):
+    category = detect_category(title)
+    option_a_html = generate_option_a_content(title, category, source_name)
+    option_b_html = None
+
+    if use_ai and GEMINI_API_KEY:
+        option_b_html = generate_option_b_ai_summary(title, category)
+
+    if option_b_html:
+        full_description = f"{option_b_html}\n<hr/>\n{option_a_html}"
+        engine_used = "Hybrid (Option B AI + Option A SEO)"
+    else:
+        full_description = option_a_html
+        engine_used = "Hybrid (Option A Smart Human Engine)"
+
+    job_id = hashlib.md5(f"{title}_{link}".encode("utf-8")).hexdigest()[:12]
+    now_iso = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    date_display = datetime.now().strftime("%d %b %Y")
+
+    return {
+        "id": job_id,
+        "title": title,
+        "category": category,
+        "source": source_name,
+        "link": link,
+        "url": link,
+        "apply_link": link,
+        "date": date_display,
+        "post_date": date_display,
+        "updated_at": now_iso,
+        "summary": re.sub(r'<[^>]+>', '', full_description)[:220] + "...",
+        "description": full_description,
+        "content": full_description,
+        "engine": engine_used,
+        "status": "published",
+        "seo_keywords": f"{title}, {category}, Sarkari Result, Latest Govt Jobs 2026, Online Form"
+    }
+
+def scrape_source(source):
+    found_items = []
+    headers = {"User-Agent": random.choice(USER_AGENTS)}
+    req = urllib.request.Request(source["url"], headers=headers)
+    try:
+        with urllib.request.urlopen(req, context=ssl_context, timeout=20) as resp:
+            html = resp.read().decode("utf-8", errors="ignore")
+            soup = BeautifulSoup(html, "html.parser")
+            for a_tag in soup.find_all("a", href=True):
+                text = re.sub(r'\s+', ' ', a_tag.get_text()).strip()
+                href = a_tag["href"].strip()
+
+                # Filter valid recruitment headlines
+                if 18 <= len(text) <= 130 and any(
+                    kw in text.lower() for kw in [
+                        "online form", "recruitment", "vacancy", "bharti", "result",
+                        "admit card", "answer key", "syllabus", "apply online", "notification", "2026"
+                    ]
+                ):
+                    if href.startswith("/"):
+                        base = "/".join(source["url"].split("/")[:3])
+                        href = base + href
+                    if href.startswith("http"):
+                        found_items.append((text, href))
+    except Exception as e:
+        print(f"[Warning] Could not fetch {source['name']}: {e}")
+
+    return found_items[:15]  # Top 15 latest items per source
+
+def load_existing_database():
+    if os.path.exists(DATABASE_FILE):
+        try:
+            with open(DATABASE_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                if isinstance(data, list):
+                    return data
+                elif isinstance(data, dict) and "jobs" in data:
+                    return data["jobs"]
+        except Exception:
+            pass
+    return []
 
 def main():
-    db = load_database()
-    existing_posts = db.get("posts", [])
-    is_seed_run = len(existing_posts) == 0
+    print("🚀 Starting Hybrid Multi-Agent Scraper (Option A + Option B Combo)...")
+    existing_jobs = load_existing_database()
+    existing_titles = {j.get("title", "").lower().strip() for j in existing_jobs if isinstance(j, dict)}
 
-    raw_items = scan_all_portals()
-    core_map = {extract_core_exam_key(p.get("title", "")): p for p in existing_posts if extract_core_exam_key(p.get("title", ""))}
-    max_id = max([p.get("id", 0) for p in existing_posts], default=0)
+    new_jobs = []
+    ai_calls_count = 0
+    MAX_AI_CALLS_PER_RUN = 15  # Protects free tier rate limit while keeping run fast
 
-    added_count = 0
-    updated_count = 0
+    for source in SOURCES:
+        print(f"🔍 Scanning {source['name']}...")
+        items = scrape_source(source)
+        for title, link in items:
+            norm_title = title.lower().strip()
+            if norm_title in existing_titles:
+                continue
 
-    for item in raw_items:
-        ck = extract_core_exam_key(item["title"])
-        if not ck:
-            continue
+            use_ai_now = ai_calls_count < MAX_AI_CALLS_PER_RUN
+            job_entry = build_hybrid_human_post(title, link, source["name"], use_ai=use_ai_now)
+            if use_ai_now and GEMINI_API_KEY:
+                ai_calls_count += 1
+                time.sleep(1.2)  # Smooth delay for API safety
 
-        if ck in core_map:
-            ex = core_map[ck]
-            diff = [kw.title() for kw in UPDATE_KEYWORDS if kw in item["title"].lower() and kw not in ex.get("title", "").lower()]
-            if diff:
-                tag = " / ".join(diff[:2])
-                ex["title"] = f"{clean_text(item['title'])} [{tag}]"
-                ex["badge"] = "UPDATED"
-                ex["status"] = "pending"
-                ex["updatedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ")
-                q_text, d_text = generate_hybrid_overview(ex["title"], item["category"])
-                ex["overview"] = q_text
-                ex["deep_details"] = d_text
-                updated_count += 1
-        else:
-            max_id += 1
-            quick_info, deep_info = generate_hybrid_overview(item["title"], item["category"])
-            link_payload = resolve_direct_pdf_links(item["link"])
+            new_jobs.append(job_entry)
+            existing_titles.add(norm_title)
 
-            new_job = {
-                "id": max_id,
-                "title": clean_text(item["title"]),
-                "category": item["category"],
-                "badge": "HOT" if any(k in item["title"].lower() for k in ["cgl", "police", "railway", "ntpc", "ibps"]) else "NEW",
-                "dept": f"Government Recruitment Authority ({item['source']})",
-                "scope": "central",
-                "state": "all",
-                "status": "published" if is_seed_run else "pending",
-                "overview": quick_info,
-                "deep_details": deep_info,
-                "verified_notice": True,
-                "sections": {
-                    "dates": True, "fee": True, "age": True, "vacancy": True,
-                    "physical": True if "police" in item["title"].lower() else False,
-                    "selection": True, "instructions": True, "links": True
-                },
-                "dates": {"start": "Refer to official notice", "end": "Closing Soon", "exam": "As per schedule"},
-                "fee": {"gen_obc": "Check PDF", "sc_st": "Check PDF"},
-                "age": {"min": "18 Years", "max": "Refer to advertisement", "relaxation": "As per Govt rules"},
-                "vacancy": {"total": "Refer to advertisement", "eligibility": "Refer to official advertisement PDF"},
-                "physical": {"male_height": "Norms applicable", "running": "As per criteria"},
-                "selection": {"process": "Computer Based Test / Written Exam, Document Verification."},
-                "instructions": {"details": "Verify photo specs and category certificates before applying."},
-                "links": link_payload,
-                "updatedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ")
-            }
-            existing_posts.append(new_job)
-            core_map[ck] = new_job
-            added_count += 1
-            if is_seed_run and added_count >= 40:
-                break
+        time.sleep(random.uniform(0.5, 1.5))
 
-    db["posts"] = existing_posts
-    save_database(db)
-    print(f"Hybrid Run Finished. Added: {added_count}, Updated: {updated_count}")
+    print(f"✅ New Unique Updates Found: {len(new_jobs)}")
+    updated_database = new_jobs + existing_jobs
+    updated_database = updated_database[:500]  # Keep database fast & clean with latest 500 posts
+
+    with open(DATABASE_FILE, "w", encoding="utf-8") as f:
+        json.dump(updated_database, f, ensure_ascii=False, indent=2)
+
+    print(f"🎉 Successfully saved {len(updated_database)} total posts to {DATABASE_FILE}!")
 
 if __name__ == "__main__":
     main()
