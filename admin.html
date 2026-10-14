@@ -1744,16 +1744,21 @@
 // Apni GitHub ki details yahan bharein
 const GITHUB_USER = "creatorwebsite-dotcom"; 
 const GITHUB_REPO = "sarkariNaukarBanega-portal"; 
-const GITHUB_TOKEN = "APNA_GITHUB_PERSONAL_ACCESS_TOKEN_YAHAN_DAL_DEN"; // Apna GitHub PAT yahan daalein
-
 async function triggerGitHubAction() {
-    const btn = document.getElementById("instantRunBtn");
-    const statusDiv = document.getElementById("triggerStatus");
+        const btn = document.getElementById("instantRunBtn");
+        const statusDiv = document.getElementById("triggerStatus");
 
-    if (GITHUB_TOKEN === "APNA_GITHUB_PERSONAL_ACCESS_TOKEN_YAHAN_DAL_DEN") {
-        alert("Pehle code mein apna GitHub Personal Access Token (PAT) daaliye!");
-        return;
-    }
+        let GITHUB_TOKEN = localStorage.getItem("GH_ADMIN_TOKEN");
+
+        if (!GITHUB_TOKEN) {
+            GITHUB_TOKEN = prompt("Admin Scraper chalane ke liye apna GitHub Token enter karein (sirf 1 baar mangega):");
+            if (GITHUB_TOKEN && GITHUB_TOKEN.trim() !== "") {
+                localStorage.setItem("GH_ADMIN_TOKEN", GITHUB_TOKEN.trim());
+            } else {
+                alert("Token enter nahi kiya gaya!");
+                return;
+            }
+        }
 
     btn.disabled = true;
     btn.style.opacity = "0.6";
