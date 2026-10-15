@@ -1744,21 +1744,22 @@
 // Apni GitHub ki details yahan bharein
 const GITHUB_USER = "creatorwebsite-dotcom"; 
 const GITHUB_REPO = "sarkariNaukarBanega-portal"; 
+
 async function triggerGitHubAction() {
-        const btn = document.getElementById("instantRunBtn");
-        const statusDiv = document.getElementById("triggerStatus");
+    const btn = document.getElementById("instantRunBtn");
+    const statusDiv = document.getElementById("triggerStatus");
 
-        let GITHUB_TOKEN = localStorage.getItem("GH_ADMIN_TOKEN");
+  let GITHUB_TOKEN = localStorage.getItem("GH_ADMIN_TOKEN");
 
-        if (!GITHUB_TOKEN) {
-            GITHUB_TOKEN = prompt("Admin Scraper chalane ke liye apna GitHub Token enter karein (sirf 1 baar mangega):");
-            if (GITHUB_TOKEN && GITHUB_TOKEN.trim() !== "") {
-                localStorage.setItem("GH_ADMIN_TOKEN", GITHUB_TOKEN.trim());
-            } else {
-                alert("Token enter nahi kiya gaya!");
-                return;
-            }
+    if (!GITHUB_TOKEN) {
+        GITHUB_TOKEN = prompt("Admin Scraper chalane ke liye apna GitHub Token enter karein (sirf 1 baar mangega):");
+        if (GITHUB_TOKEN && GITHUB_TOKEN.trim() !== "") {
+            localStorage.setItem("GH_ADMIN_TOKEN", GITHUB_TOKEN.trim());
+        } else {
+            alert("Token enter nahi kiya gaya!");
+            return;
         }
+    }  
 
     btn.disabled = true;
     btn.style.opacity = "0.6";
@@ -1834,6 +1835,56 @@ function showNotificationAlert(count) {
 
 setInterval(checkPendingNotifications, 30000);
 window.onload = checkPendingNotifications;
+</script><script>
+// ADMIN PANEL SYNC & EDIT/DELETE ENGINE
+window.addEventListener("load", function() {
+  try {
+    const savedPosts = JSON.parse(localStorage.getItem("admin_synced_posts") || "[]");
+    
+    // Agar admin panel mein koi table ya list container hai toh wahan data render karein
+    const adminTableContainer = document.querySelector("table tbody, #adminPostList, [class*='admin-list']");
+    if (adminTableContainer && savedPosts.length > 0) {
+      adminTableContainer.innerHTML = savedPosts.map((p, idx) => `
+        <tr style="border-bottom:1px solid #ddd;">
+          <td style="padding:8px;">${idx + 1}</td>
+          <td style="padding:8px;font-weight:bold;">${p.title}</td>
+          <td style="padding:8px;color:#15803d;">${p.strictCat || p.category || 'Job'}</td>
+          <td style="padding:8px;">${p.releaseDate}</td>
+          <td style="padding:8px;text-align:center;">
+            <button onclick="editAdminPost(${idx})" style="background:#2563eb;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;margin-right:4px;">Edit</button>
+            <button onclick="deleteAdminPost(${idx})" style="background:#dc2626;color:#fff;border:none;padding:5px 10px;border-radius:4px;cursor:pointer;">Delete</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // Global Edit & Delete functions for Admin Panel
+    window.editAdminPost = function(index) {
+      const posts = JSON.parse(localStorage.getItem("admin_synced_posts") || "[]");
+      const post = posts[index];
+      if (!post) return;
+      const newTitle = prompt("Edit Post Title:", post.title);
+      if (newTitle) {
+        posts[index].title = newTitle;
+        localStorage.setItem("admin_synced_posts", JSON.stringify(posts));
+        alert("Post updated successfully! Refresh page.");
+        location.reload();
+      }
+    };
+
+    window.deleteAdminPost = function(index) {
+      if (confirm("Are you sure you want to delete this live post?")) {
+        let posts = JSON.parse(localStorage.getItem("admin_synced_posts") || "[]");
+        posts.splice(index, 1);
+        localStorage.setItem("admin_synced_posts", JSON.stringify(posts));
+        alert("Post deleted successfully!");
+        location.reload();
+      }
+    };
+  } catch (err) {
+    console.error("Admin Panel Sync Error:", err);
+  }
+});
 </script>
 </body>
 </html>
