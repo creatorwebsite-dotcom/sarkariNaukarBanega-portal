@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🔐 Universal Admin Panel - Sarkari Naukar</title>
+  <title>🔐 Universal Admin Panel - Sarkari Naukar Banega</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
@@ -13,72 +13,99 @@
       --sn-primary: #094053;
       --sn-secondary: #006975;
       --sn-gold: #f8c016;
+      --sn-ticker-red: #c9182b;
       --sn-bg: #f1f5f9;
+      --sn-card: #ffffff;
       --sn-border: #cbd5e1;
       --sn-text-dark: #051520;
       --sn-text-muted: #64748b;
+      --sn-success: #10b981;
       --sn-danger: #ef4444;
+      --sn-warning: #f59e0b;
+      --sn-info: #0284c7;
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
     body { background: var(--sn-bg); color: var(--sn-text-dark); min-height: 100vh; }
 
+    /* LOGIN SCREEN */
     .login-wrapper { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at top right, #006975, #094053, #041922); padding: 20px; }
-    .login-card { background: #ffffff; border-radius: 16px; padding: 35px 30px; width: 100%; max-width: 440px; box-shadow: 0 25px 60px rgba(0,0,0,0.45); border: 2px solid var(--sn-gold); }
-    .login-brand { text-align: center; margin-bottom: 25px; }
+    .login-card { background: #ffffff; border-radius: 16px; padding: 35px 30px; width: 100%; max-width: 440px; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45); border: 2px solid var(--sn-gold); }
+    .login-brand { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-bottom: 25px; text-align: center; }
     .login-brand h1 { font-size: 1.6rem; font-weight: 900; color: var(--sn-primary); text-transform: uppercase; }
-    .form-group { margin-bottom: 14px; }
-    .form-group label { display: block; font-size: 0.82rem; font-weight: 800; color: var(--sn-primary); margin-bottom: 5px; }
-    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 9px 12px; border: 1.5px solid var(--sn-border); border-radius: 8px; font-size: 0.88rem; font-weight: 600; outline: none; background: #fff; }
-    .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
-    .btn-login { width: 100%; padding: 12px; background: linear-gradient(135deg, var(--sn-primary), var(--sn-secondary)); color: var(--sn-gold); font-size: 1rem; font-weight: 900; border: none; border-radius: 8px; cursor: pointer; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.84rem; font-weight: 800; color: var(--sn-primary); margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px 14px; border: 1.5px solid var(--sn-border); border-radius: 8px; font-size: 0.9rem; font-weight: 600; outline: none; background: #fff; }
+    .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+    .btn-login { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--sn-primary), var(--sn-secondary)); color: var(--sn-gold); font-size: 1.05rem; font-weight: 900; border: none; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
 
+    /* ADMIN APP */
     #adminApp { display: none; min-height: 100vh; }
-    .sidebar { width: 250px; background: #041922; color: #fff; position: fixed; left: 0; top: 0; bottom: 0; overflow-y: auto; z-index: 100; display: flex; flex-direction: column; }
-    .sidebar-brand { padding: 16px; border-bottom: 1px solid rgba(255,255,255,0.08); background: #021118; }
-    .sidebar-brand h2 { font-size: 1.1rem; font-weight: 900; color: var(--sn-gold); text-transform: uppercase; }
+    .sidebar { width: 260px; background: #041922; color: #fff; position: fixed; left: 0; top: 0; bottom: 0; overflow-y: auto; z-index: 100; display: flex; flex-direction: column; border-right: 2px solid rgba(248, 192, 22, 0.2); }
+    .sidebar-brand { padding: 18px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); background: #021118; }
+    .sidebar-brand h2 { font-size: 1.15rem; font-weight: 900; color: var(--sn-gold); text-transform: uppercase; }
     .sidebar-menu { list-style: none; padding: 10px; flex-grow: 1; }
-    .sidebar-menu li a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; color: #cbd5e1; text-decoration: none; font-size: 0.85rem; font-weight: 700; border-radius: 8px; margin-bottom: 3px; }
+    .menu-cat-title { font-size: 0.68rem; text-transform: uppercase; color: #64748b; font-weight: 800; letter-spacing: 1px; padding: 12px 10px 6px; }
+    .sidebar-menu li a { display: flex; align-items: center; gap: 12px; padding: 10px 14px; color: #cbd5e1; text-decoration: none; font-size: 0.88rem; font-weight: 700; border-radius: 8px; transition: all 0.2s; margin-bottom: 2px; }
+    .sidebar-menu li a i { width: 18px; text-align: center; }
     .sidebar-menu li a:hover, .sidebar-menu li a.active { background: linear-gradient(90deg, var(--sn-secondary), var(--sn-primary)); color: var(--sn-gold); }
-    .sidebar-footer { padding: 12px; background: #021118; }
-    .btn-logout { width: 100%; padding: 9px; background: rgba(239,68,68,0.15); border: 1.5px solid var(--sn-danger); color: #fca5a5; font-weight: 800; border-radius: 8px; cursor: pointer; }
+    .sidebar-footer { padding: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); background: #021118; }
+    .btn-logout { width: 100%; padding: 10px; background: rgba(239, 68, 68, 0.15); border: 1.5px solid var(--sn-danger); color: #fca5a5; font-weight: 800; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-    .main-wrapper { margin-left: 250px; min-height: 100vh; display: flex; flex-direction: column; }
-    .top-nav { height: 58px; background: #ffffff; border-bottom: 1.5px solid var(--sn-border); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 90; }
-    .top-nav-title { font-size: 1.05rem; font-weight: 900; color: var(--sn-primary); }
-    .content-body { padding: 20px; flex-grow: 1; }
+    .main-wrapper { margin-left: 260px; min-height: 100vh; display: flex; flex-direction: column; }
+    .top-nav { height: 60px; background: #ffffff; border-bottom: 1.5px solid var(--sn-border); padding: 0 25px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 90; }
+    .top-nav-title { font-size: 1.1rem; font-weight: 900; color: var(--sn-primary); }
+    .content-body { padding: 25px; flex-grow: 1; }
 
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
-    .stat-card { background: #fff; border-radius: 10px; padding: 14px; border: 1.5px solid var(--sn-border); display: flex; align-items: center; justify-content: space-between; }
-    .stat-info p { font-size: 0.72rem; font-weight: 800; color: var(--sn-text-muted); text-transform: uppercase; }
-    .stat-info h3 { font-size: 1.4rem; font-weight: 900; color: var(--sn-primary); margin-top: 4px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 22px; }
+    .stat-card { background: #fff; border-radius: 10px; padding: 16px; border: 1.5px solid var(--sn-border); display: flex; align-items: center; justify-content: space-between; }
+    .stat-info p { font-size: 0.75rem; font-weight: 800; color: var(--sn-text-muted); text-transform: uppercase; }
+    .stat-info h3 { font-size: 1.5rem; font-weight: 900; color: var(--sn-primary); margin-top: 4px; }
+    .stat-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
 
     .view-panel { display: none; }
     .view-panel.active { display: block; }
     .panel-card { background: #fff; border: 1.5px solid var(--sn-border); border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
-    .panel-card-head { background: #fafafa; padding: 12px 18px; border-bottom: 1.5px solid var(--sn-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-    .panel-card-head h3 { font-size: 0.95rem; font-weight: 900; color: var(--sn-primary); }
-    .panel-card-body { padding: 18px; }
+    .panel-card-head { background: #fafafa; padding: 14px 20px; border-bottom: 1.5px solid var(--sn-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .panel-card-head h3 { font-size: 1rem; font-weight: 900; color: var(--sn-primary); display: flex; align-items: center; gap: 8px; }
+    .panel-card-body { padding: 20px; }
 
-    .btn-main { padding: 9px 16px; border-radius: 8px; background: var(--sn-primary); color: var(--sn-gold); border: none; font-weight: 800; font-size: 0.82rem; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
-    .btn-row-edit { background: #2563eb; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: 800; font-size: 0.75rem; margin-right: 4px; }
-    .btn-row-del { background: #dc2626; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-weight: 800; font-size: 0.75rem; }
+    .toggle-section-card { border: 1.5px solid var(--sn-border); border-radius: 10px; padding: 16px; margin-bottom: 18px; background: #ffffff; }
+    .toggle-section-card.active-sec { border-color: var(--sn-secondary); background: #f8fafc; }
+    .toggle-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+    .toggle-title { font-size: 0.92rem; font-weight: 800; color: var(--sn-primary); display: flex; align-items: center; gap: 10px; }
+    .custom-check { width: 20px; height: 20px; accent-color: var(--sn-secondary); cursor: pointer; }
+    .toggle-content { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--sn-border); display: none; }
+    .toggle-section-card.active-sec .toggle-content { display: block; }
 
-    .badge { padding: 2px 7px; border-radius: 4px; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; }
+    .btn-main { padding: 10px 18px; border-radius: 8px; background: var(--sn-primary); color: var(--sn-gold); border: none; font-weight: 800; font-size: 0.88rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-row-del { background: #fee2e2; color: #dc2626; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: 800; font-size: 0.78rem; }
+    .btn-row-edit { background: #e0f2fe; color: #0369a1; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-weight: 800; font-size: 0.78rem; margin-right: 4px; }
+
+    #adminToast { position: fixed; bottom: 25px; right: 25px; padding: 12px 20px; border-radius: 8px; font-size: 0.88rem; font-weight: 800; color: #fff; display: none; z-index: 99999; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+    .toast-success { background: #059669; }
+    .toast-error { background: #dc2626; }
+    .toast-info { background: #0284c7; }
+
+    .badge { padding: 2px 7px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
     .badge-primary { background: #e0f2fe; color: #0369a1; }
     .badge-red { background: #fee2e2; color: #b91c1c; }
     .badge-green { background: #dcfce7; color: #15803d; }
 
+    .trending-card-builder-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .trending-card-item-box { background: #ffffff; border: 1.5px solid var(--sn-border); border-radius: 8px; padding: 14px; }
+    .trending-card-item-box h5 { font-size: 0.88rem; font-weight: 900; color: var(--sn-primary); margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+
     .table-container { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; }
-    table th, table td { border: 1px solid var(--sn-border); padding: 9px 12px; font-size: 0.8rem; text-align: left; }
+    table th, table td { border: 1px solid var(--sn-border); padding: 10px 14px; font-size: 0.85rem; text-align: left; }
     table th { background: #f8fafc; font-weight: 800; color: var(--sn-primary); }
 
-    #adminToast { position: fixed; bottom: 20px; right: 20px; padding: 12px 18px; border-radius: 8px; font-size: 0.85rem; font-weight: 800; color: #fff; display: none; z-index: 99999; background: #059669; }
-
+    @media (max-width: 900px) { .trending-card-builder-grid { grid-template-columns: 1fr; } }
     @media (max-width: 800px) {
-      .sidebar { width: 65px; }
-      .sidebar-brand h2, .sidebar-menu li a span, .sidebar-footer span { display: none; }
-      .main-wrapper { margin-left: 65px; }
+      .sidebar { width: 70px; }
+      .sidebar-brand h2, .sidebar-menu li a span, .menu-cat-title, .sidebar-footer span { display: none; }
+      .main-wrapper { margin-left: 70px; }
     }
   </style>
 </head>
@@ -93,27 +120,42 @@
       </div>
       <form onsubmit="handleAdminLogin(event)">
         <div class="form-group">
-          <label>Admin Email</label>
+          <label><i class="fas fa-envelope"></i> Admin Email</label>
           <input type="email" id="loginEmail" required value="admin@sarkarinaukar.com">
         </div>
         <div class="form-group">
-          <label>Password</label>
+          <label><i class="fas fa-lock"></i> Password</label>
           <input type="password" id="loginPassword" required value="admin123">
         </div>
-        <button type="submit" class="btn-login">🔐 Login To Dashboard</button>
+        <button type="submit" class="btn-login"><i class="fas fa-shield-alt"></i> Login To Dashboard</button>
       </form>
     </div>
   </div>
 
-  <!-- MAIN ADMIN APP -->
+  <!-- ADMIN APP -->
   <div id="adminApp">
     <aside class="sidebar">
       <div class="sidebar-brand"><h2>Sarkari Naukar</h2></div>
       <ul class="sidebar-menu">
-        <li><a href="javascript:void(0)" class="menu-link active" onclick="switchTab('dashboard', this)"><i class="fas fa-chart-pie"></i> <span>Dashboard</span></a></li>
-        <li><a href="javascript:void(0)" class="menu-link" onclick="switchTab('posts', this)"><i class="fas fa-list-check"></i> <span>All Live Posts</span></a></li>
-        <li><a href="javascript:void(0)" class="menu-link" onclick="switchTab('createPost', this)"><i class="fas fa-plus-circle"></i> <span>Add / Edit Post</span></a></li>
-        <li><a href="javascript:void(0)" class="menu-link" onclick="switchTab('backup', this)"><i class="fas fa-database"></i> <span>JSON Backup & Scraper</span></a></li>
+        <div class="menu-cat-title">Main Portal</div>
+        <li><a href="#dashboard" class="menu-link active" onclick="switchTab('dashboard', this)"><i class="fas fa-chart-pie"></i> <span>Dashboard</span></a></li>
+        <li><a href="#posts" class="menu-link" onclick="switchTab('posts', this)"><i class="fas fa-list-check"></i> <span>All Live Posts</span></a></li>
+        <li><a href="#createPost" class="menu-link" onclick="switchTab('createPost', this)"><i class="fas fa-plus-circle"></i> <span>Add / Edit Post</span></a></li>
+
+        <div class="menu-cat-title">Ads & Marketing</div>
+        <li><a href="#adsManager" class="menu-link" onclick="switchTab('adsManager', this)"><i class="fas fa-rectangle-ad"></i> <span>Ads & Sponsors</span></a></li>
+        <li><a href="#tickerStrip" class="menu-link" onclick="switchTab('tickerStrip', this)"><i class="fas fa-bullhorn"></i> <span>Breaking Ticker</span></a></li>
+
+        <div class="menu-cat-title">System</div>
+        <li><a href="#backup" class="menu-link" onclick="switchTab('backup', this)"><i class="fas fa-database"></i> <span>Database & Backup</span></a></li>
+        <li><a href="#trafficStats" class="menu-link" onclick="switchTab('trafficStats', this)"><i class="fas fa-chart-line"></i> <span>Traffic Statistics</span></a></li>
+
+        <div class="menu-cat-title">Portal Controls</div>
+        <li><a href="#trendingEditor" class="menu-link" onclick="switchTab('trendingEditor', this)"><i class="fas fa-fire"></i> <span>6 Trending Forms</span></a></li>
+        <li><a href="#categories" class="menu-link" onclick="switchTab('categories', this)"><i class="fas fa-folder"></i> <span>Categories</span></a></li>
+        <li><a href="#users" class="menu-link" onclick="switchTab('users', this)"><i class="fas fa-users"></i> <span>Users</span></a></li>
+        <li><a href="#notifications" class="menu-link" onclick="switchTab('notifications', this)"><i class="fas fa-bell"></i> <span>Notifications</span></a></li>
+        <li><a href="#databaseView" class="menu-link" onclick="switchTab('databaseView', this)"><i class="fas fa-database"></i> <span>Database JSON</span></a></li>
       </ul>
       <div class="sidebar-footer">
         <button class="btn-logout" onclick="handleAdminLogout()"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></button>
@@ -124,30 +166,43 @@
       <header class="top-nav">
         <div class="top-nav-title" id="pageTitleText">Dashboard</div>
         <div style="display:flex; align-items:center; gap:12px;">
-          <a href="index.html" target="_blank" style="color:var(--sn-secondary); text-decoration:none; font-weight:800; font-size:0.82rem;"><i class="fas fa-external-link-alt"></i> Open Live Website</a>
+          <a href="index.html" target="_blank" style="color:var(--sn-secondary); text-decoration:none; font-weight:800; font-size:0.85rem;"><i class="fas fa-external-link-alt"></i> View Portal</a>
+          <div style="font-size:0.85rem; font-weight:800; color:var(--sn-primary);">admin@sarkarinaukar.com</div>
         </div>
       </header>
 
       <main class="content-body">
+
         <!-- DASHBOARD -->
         <section id="view-dashboard" class="view-panel active">
           <div class="stats-grid">
-            <div class="stat-card"><div class="stat-info"><p>Total Live Posts</p><h3 id="statTotal">0</h3></div><div>📝</div></div>
-            <div class="stat-card"><div class="stat-info"><p>Latest Jobs</p><h3 id="statJobs">0</h3></div><div>💼</div></div>
-            <div class="stat-card"><div class="stat-info"><p>Results</p><h3 id="statResults">0</h3></div><div>🏆</div></div>
-            <div class="stat-card"><div class="stat-info"><p>Admit Cards</p><h3 id="statAdmit">0</h3></div><div>🪪</div></div>
-            <div class="stat-card"><div class="stat-info"><p>Syllabus & Admission</p><h3 id="statOther">0</h3></div><div>📚</div></div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Total Posts</p><h3 id="statTotal">0</h3></div>
+              <div class="stat-icon" style="background:#e0f2fe; color:#0369a1;">📝</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Latest Jobs</p><h3 id="statJobs">0</h3></div>
+              <div class="stat-icon" style="background:#fef3c7; color:#b45309;">💼</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Results</p><h3 id="statResults">0</h3></div>
+              <div class="stat-icon" style="background:#dcfce7; color:#15803d;">🏆</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info"><p>Admit Cards</p><h3 id="statAdmit">0</h3></div>
+              <div class="stat-icon" style="background:#fce7f3; color:#be185d;">🪪</div>
+            </div>
           </div>
 
           <div class="panel-card">
             <div class="panel-card-head">
-              <h3>⚡ Live Website Posts (Edit / Delete Directly)</h3>
-              <button class="btn-main" onclick="openNewPostCreator()">➕ Add New Post</button>
+              <h3><i class="fas fa-clock"></i> Recent Live Uploads</h3>
+              <button class="btn-main" onclick="switchTab('createPost', document.querySelectorAll('.menu-link')[2])">➕ New Post</button>
             </div>
             <div class="panel-card-body table-container">
               <table>
                 <thead>
-                  <tr><th>#</th><th>Post Title</th><th>Category</th><th>Release Date</th><th>Last Date</th><th>Extended</th><th>Actions</th></tr>
+                  <tr><th>Title</th><th>Category</th><th>Badge</th><th>State</th><th>Actions</th></tr>
                 </thead>
                 <tbody id="dashTableBody"></tbody>
               </table>
@@ -155,17 +210,17 @@
           </div>
         </section>
 
-        <!-- ALL POSTS TAB -->
+        <!-- ALL POSTS -->
         <section id="view-posts" class="view-panel">
           <div class="panel-card">
             <div class="panel-card-head">
-              <h3>Manage All Live Website Posts</h3>
-              <input type="text" id="adminSearchBox" placeholder="🔍 Filter live posts..." oninput="renderAllPosts()" style="padding:6px 12px; border:1.5px solid #cbd5e1; border-radius:6px; font-size:0.8rem; width:240px;">
+              <h3><i class="fas fa-layer-group"></i> Manage All Live Posts</h3>
+              <button class="btn-main" onclick="switchTab('createPost', document.querySelectorAll('.menu-link')[2])">➕ Add New</button>
             </div>
             <div class="panel-card-body table-container">
               <table>
                 <thead>
-                  <tr><th>#</th><th>Title</th><th>Category</th><th>State</th><th>Release Date</th><th>Last Date</th><th>Actions</th></tr>
+                  <tr><th>Title</th><th>Category</th><th>Badge</th><th>Scope</th><th>Status</th><th>Actions</th></tr>
                 </thead>
                 <tbody id="allPostsBody"></tbody>
               </table>
@@ -173,25 +228,29 @@
           </div>
         </section>
 
-        <!-- CREATE / EDIT POST TAB -->
+        <!-- ADD / EDIT POST -->
         <section id="view-createPost" class="view-panel">
-          <div class="panel-card" style="max-width:850px; margin:0 auto;">
+          <div class="panel-card" style="max-width:920px; margin:0 auto;">
             <div class="panel-card-head">
-              <h3 id="formModeTitle">➕ Add / Edit Live Post</h3>
-              <button type="button" onclick="resetPostForm()" style="padding:5px 12px; border:none; border-radius:6px; cursor:pointer; font-weight:700;">Reset</button>
+              <h3 id="formModeTitle">➕ Universal Post Creator</h3>
+              <button type="button" onclick="resetMasterForm()" style="padding:6px 14px; background:#e2e8f0; border:none; border-radius:6px; cursor:pointer; font-weight:700;">Reset Form</button>
             </div>
             <div class="panel-card-body">
-              <form id="universalPostForm" onsubmit="handleSavePost(event)">
+              <form id="universalPostForm" onsubmit="handleSaveUniversalPost(event)">
                 <input type="hidden" id="editPostId" value="">
                 <div class="form-group">
                   <label>Post Title *</label>
-                  <input type="text" id="postTitle" required placeholder="e.g. SSC CGL 2026 Online Form – 17,727 Posts">
+                  <input type="text" id="postTitle" placeholder="e.g. SSC CGL 2026 Online Application Form" required>
+                </div>
+                <div class="form-group">
+                  <label>Post Overview (Short Summary) *</label>
+                  <textarea id="postOverview" rows="2" placeholder="e.g. Staff Selection Commission recruitment for Group B & C vacancies."></textarea>
                 </div>
                 <div class="form-row">
                   <div class="form-group">
-                    <label>Category *</label>
+                    <label>Target Category *</label>
                     <select id="postCategory" required>
-                      <option value="latest_jobs">🔥 Latest Jobs</option>
+                      <option value="latest_jobs">💼 Latest Jobs</option>
                       <option value="results">🏆 Result</option>
                       <option value="admit_cards">🪪 Admit Card</option>
                       <option value="answer_keys">🔑 Answer Key</option>
@@ -200,361 +259,422 @@
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>State Filter *</label>
+                    <label>Highlight Badge</label>
+                    <select id="postBadge">
+                      <option value="NEW">🔴 NEW</option>
+                      <option value="HOT">🔥 HOT</option>
+                      <option value="OUT">🏆 OUT</option>
+                      <option value="CUTOFF">📊 CUTOFF</option>
+                      <option value="KEY">🔑 KEY</option>
+                      <option value="PDF">📄 PDF</option>
+                      <option value="none">No Badge</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label>Job Scope *</label>
+                    <select id="postScope" onchange="toggleScopeState(this.value)">
+                      <option value="central">All India (Central Level)</option>
+                      <option value="state">State-wise (Regional Level)</option>
+                    </select>
+                  </div>
+                  <div class="form-group" id="stateDropdownGroup" style="display:none;">
+                    <label>Specific State</label>
                     <select id="postState">
-                      <option value="all">All India</option>
+                      <option value="all">All States</option>
                       <option value="up">Uttar Pradesh</option>
                       <option value="bihar">Bihar</option>
-                      <option value="maharashtra">Maharashtra</option>
                       <option value="delhi">Delhi</option>
-                      <option value="mp">Madhya Pradesh</option>
-                      <option value="rajasthan">Rajasthan</option>
-                      <option value="haryana">Haryana</option>
-                      <option value="wb">West Bengal</option>
+                      <option value="maharashtra">Maharashtra</option>
                     </select>
                   </div>
                   <div class="form-group">
-                    <label>Job Type Filter *</label>
-                    <select id="postJobType">
-                      <option value="all">All Jobs</option>
-                      <option value="ssc">SSC</option>
-                      <option value="railway">Railway</option>
-                      <option value="bank">Banking</option>
-                      <option value="police">Police / Defence</option>
-                      <option value="teacher">Teacher / TET</option>
-                      <option value="upsc">UPSC / PSC</option>
-                    </select>
+                    <label>Department / Board Name</label>
+                    <input type="text" id="postDept" placeholder="e.g. Staff Selection Commission">
                   </div>
                 </div>
 
-                <div class="form-row">
-                  <div class="form-group"><label>Department / Board Name</label><input type="text" id="postDept" placeholder="e.g. Staff Selection Commission"></div>
-                  <div class="form-group"><label>Notification Release Date</label><input type="text" id="d_start" placeholder="e.g. 15 Oct 2026"></div>
-                  <div class="form-group"><label>Last Date to Apply</label><input type="text" id="d_end" placeholder="e.g. 10 Nov 2026"></div>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group">
-                    <label>Date Extended Tag?</label>
-                    <select id="postExtended">
-                      <option value="false">No</option>
-                      <option value="true">Yes (Show 📅 Date Extended Tag)</option>
-                    </select>
-                  </div>
-                  <div class="form-group"><label>Total Vacancies</label><input type="text" id="v_total" placeholder="e.g. 17,727 Posts"></div>
-                  <div class="form-group"><label>Qualification / Eligibility</label><input type="text" id="v_qual" placeholder="e.g. 12th / Bachelor Degree"></div>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group"><label>General / OBC Fee</label><input type="text" id="f_gen" placeholder="e.g. ₹100/-"></div>
-                  <div class="form-group"><label>SC / ST / Female Fee</label><input type="text" id="f_sc" placeholder="e.g. ₹0/-"></div>
-                  <div class="form-group"><label>Official Apply / Notice URL</label><input type="url" id="link_apply" placeholder="https://ssc.gov.in"></div>
-                </div>
-
-                <button type="submit" class="btn-main" style="padding:12px 24px; font-size:0.95rem; margin-top:10px;">
-                  💾 Save & Publish to Live Website
+                <button type="submit" class="btn-main" style="padding:14px 28px; font-size:1rem; margin-top:15px;">
+                  <i class="fas fa-cloud-arrow-up"></i> <span id="saveBtnText">Publish Post to Live Website</span>
                 </button>
               </form>
             </div>
           </div>
         </section>
 
-        <!-- BACKUP & SCRAPER TRIGGER -->
-        <section id="view-backup" class="view-panel">
-          <div class="panel-card" style="max-width:700px; margin:0 auto;">
-            <div class="panel-card-head"><h3>JSON Database Backup & GitHub Scraper</h3></div>
+        <!-- ADS MANAGER -->
+        <section id="view-adsManager" class="view-panel">
+          <div class="panel-card" style="max-width:850px; margin:0 auto;">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-rectangle-ad"></i> Website Ads & Sponsorship Manager</h3>
+              <button class="btn-main" onclick="saveAdsSettings()"><i class="fas fa-save"></i> Save Ads Configuration</button>
+            </div>
             <div class="panel-card-body">
-              <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
-                <button class="btn-main" onclick="downloadJSONBackup()">📥 Download jobs_database.json</button>
-                <button class="btn-main" style="background:#006975;" onclick="document.getElementById('fileJsonUpload').click()">📤 Import JSON File</button>
-                <input type="file" id="fileJsonUpload" accept=".json" style="display:none;" onchange="handleJsonFileImport(event)">
+              <div class="toggle-section-card" id="ad-block-adsense">
+                <div class="toggle-header" onclick="toggleCardSec('ad-block-adsense')">
+                  <span class="toggle-title"><i class="fab fa-google"></i> Google AdSense Global Unit</span>
+                  <input type="checkbox" id="check_adsense" class="custom-check">
+                </div>
+                <div class="toggle-content">
+                  <div class="form-group"><label>AdSense Client ID (Publisher ID)</label><input type="text" id="ad_client_id" placeholder="ca-pub-XXXXXXXXXXXXXXXX"></div>
+                </div>
               </div>
-              <div style="padding:16px; background:#fff3cd; border:2px solid #ffecb5; border-radius:10px; text-align:center;">
-                <h4 style="color:#856404; margin-bottom:8px;">⚡ Instant 8-Website GitHub Action Scraper</h4>
-                <button id="instantRunBtn" onclick="triggerGitHubAction()" class="btn-main" style="background:#198754; color:#fff;">🚀 Trigger Live Scraper Now</button>
-                <div id="triggerStatus" style="margin-top:8px; font-size:0.8rem; font-weight:700;"></div>
+              <div class="toggle-section-card" id="ad-block-banner">
+                <div class="toggle-header" onclick="toggleCardSec('ad-block-banner')">
+                  <span class="toggle-title"><i class="fas fa-image"></i> Direct Company Sponsor Banner</span>
+                  <input type="checkbox" id="check_banner" class="custom-check">
+                </div>
+                <div class="toggle-content">
+                  <div class="form-group"><label>Banner Image URL</label><input type="text" id="ad_banner_img" placeholder="https://example.com/banner.jpg"></div>
+                  <div class="form-group"><label>Target URL</label><input type="text" id="ad_banner_link" placeholder="https://sponsor.com"></div>
+                </div>
               </div>
             </div>
           </div>
         </section>
+
+        <!-- BREAKING TICKER STRIP -->
+        <section id="view-tickerStrip" class="view-panel">
+          <div class="panel-card" style="max-width:750px; margin:0 auto;">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-bullhorn"></i> Breaking News Ticker Strip</h3>
+              <button class="btn-main" onclick="saveTicker()"><i class="fas fa-save"></i> Save Ticker</button>
+            </div>
+            <div class="panel-card-body">
+              <div class="form-group">
+                <label>Running News Headline Text</label>
+                <textarea id="tickerInput" rows="4" placeholder="Enter headline ticker text..."></textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- DATABASE & BACKUP -->
+        <section id="view-backup" class="view-panel">
+          <div class="panel-card" style="max-width:750px; margin:0 auto;">
+            <div class="panel-card-head"><h3><i class="fas fa-database"></i> JSON Backup & Data Sync Tool</h3></div>
+            <div class="panel-card-body">
+              <p style="font-size:0.85rem; color:var(--sn-text-muted); margin-bottom:15px;">Download updated <code>jobs_database.json</code> file to commit directly to your GitHub repository:</p>
+              <div style="display:flex; gap:10px;">
+                <button class="btn-main" onclick="downloadJSONBackup()"><i class="fas fa-download"></i> Download jobs_database.json</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TRAFFIC STATISTICS -->
+        <section id="view-trafficStats" class="view-panel">
+          <div class="stats-grid">
+            <div class="stat-card"><div class="stat-info"><p>Today's Traffic</p><h3>142</h3></div><div>📅</div></div>
+            <div class="stat-card"><div class="stat-info"><p>Weekly Traffic</p><h3>980</h3></div><div>📈</div></div>
+            <div class="stat-card"><div class="stat-info"><p>Monthly Traffic</p><h3>4,120</h3></div><div>📊</div></div>
+            <div class="stat-card"><div class="stat-info"><p>Live Active Users</p><h3>19</h3></div><div>⚡</div></div>
+          </div>
+        </section>
+
+        <!-- TRENDING FORMS EDITOR -->
+        <section id="view-trendingEditor" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-card-head">
+              <h3><i class="fas fa-fire"></i> Top 6 Trending Forms Cards Editor</h3>
+              <button class="btn-main" style="background:#10b981;" onclick="saveTop6TrendingForms()"><i class="fas fa-save"></i> Save All Cards</button>
+            </div>
+            <div class="panel-card-body">
+              <div class="trending-card-builder-grid" id="top6TrendingContainer"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- CATEGORIES -->
+        <section id="view-categories" class="view-panel">
+          <div class="panel-card"><div class="panel-card-head"><h3>Standard Categories</h3></div><div class="panel-card-body">6 Locked 3-Column Matrices active on main portal.</div></div>
+        </section>
+        <!-- USERS -->
+        <section id="view-users" class="view-panel">
+          <div class="panel-card"><div class="panel-card-head"><h3>Users</h3></div><div class="panel-card-body">Admin: admin@sarkarinaukar.com (Online)</div></div>
+        </section>
+        <!-- NOTIFICATIONS -->
+        <section id="view-notifications" class="view-panel">
+          <div class="panel-card"><div class="panel-card-head"><h3>Notifications</h3></div><div class="panel-card-body">Live Database Synchronization Active.</div></div>
+        </section>
+        <!-- DATABASE VIEW -->
+        <section id="view-databaseView" class="view-panel">
+          <div class="panel-card">
+            <div class="panel-card-head"><h3>Live Database JSON</h3><button class="btn-main" onclick="refreshLiveDbView()">Refresh</button></div>
+            <div class="panel-card-body"><textarea id="liveRawDbText" rows="12" readonly style="font-family:'JetBrains Mono',monospace; font-size:0.8rem; background:#0f172a; color:#22c55e; width:100%; padding:12px; border-radius:6px;"></textarea></div>
+          </div>
+        </section>
+
       </main>
     </div>
   </div>
 
-  <div id="adminToast">Saved!</div>
+  <div id="adminToast"></div>
 
+  <!-- ADMIN SCRIPT -->
   <script>
-  "use strict";
-  const STORAGE_KEY = "SN_PORTAL_DATABASE_CLEAN";
-  const SESSION_KEY = "SN_ADMIN_SESSION";
+    "use strict";
+    const STORAGE_KEY = "SN_PORTAL_DATABASE_CLEAN";
+    const SESSION_KEY = "SN_ADMIN_SESSION";
 
-  // Same verified core posts fallback so Admin Panel is never empty even if opened first
-  const DEFAULT_LIVE_POSTS = [
-    { id: 101, title: "SSC CGL 2026 Online Form – 17,727 Group B & C Vacancies", category: "latest_jobs", state: "all", jobType: "ssc", releaseDate: "14 Oct 2026", lastDate: "30 Oct 2026", isExtended: true, dept: "Staff Selection Commission", totalPosts: "17,727 Posts", qual: "Bachelor Degree", feeGen: "₹100/-", feeSc: "₹0/-", applyUrl: "https://ssc.gov.in", status: "published" },
-    { id: 102, title: "RRB NTPC Graduate & UG Recruitment 2026 – 11,558 Posts", category: "latest_jobs", state: "all", jobType: "railway", releaseDate: "14 Oct 2026", lastDate: "28 Oct 2026", isExtended: true, dept: "Railway Recruitment Board", totalPosts: "11,558 Posts", qual: "12th / Graduate", feeGen: "₹500/-", feeSc: "₹250/-", applyUrl: "https://indianrailways.gov.in", status: "published" },
-    { id: 103, title: "UP Police Constable & SI Recruitment 2026 – 60,244 Posts", category: "latest_jobs", state: "up", jobType: "police", releaseDate: "14 Oct 2026", lastDate: "05 Nov 2026", isExtended: false, dept: "UPPRPB Lucknow", totalPosts: "60,244 Posts", qual: "12th Pass", feeGen: "₹400/-", feeSc: "₹400/-", applyUrl: "https://uppbpb.gov.in", status: "published" },
-    { id: 201, title: "India Post GDS Result & Circle Wise Merit List 2026 Out", category: "results", state: "all", jobType: "ssc", releaseDate: "15 Oct 2026", lastDate: "Check Merit", isExtended: false, dept: "India Post", totalPosts: "44,228 Posts", qual: "10th Pass", feeGen: "₹100/-", feeSc: "₹0/-", applyUrl: "https://indiapostgdsonline.gov.in", status: "published" },
-    { id: 301, title: "RRB NTPC CBT-1 Exam Date & City Intimation / Admit Card 2026", category: "admit_cards", state: "all", jobType: "railway", releaseDate: "15 Oct 2026", lastDate: "Exam Oct-Nov", isExtended: false, dept: "Railway Recruitment Board", totalPosts: "11,558 Posts", qual: "12th / Graduate", feeGen: "₹500/-", feeSc: "₹250/-", applyUrl: "https://indianrailways.gov.in", status: "published" },
-    { id: 401, title: "SSC MTS & Havaldar Official Answer Key & Response Sheet 2026", category: "answer_keys", state: "all", jobType: "ssc", releaseDate: "15 Oct 2026", lastDate: "22 Oct 2026", isExtended: false, dept: "Staff Selection Commission", totalPosts: "9,583 Posts", qual: "10th Pass", feeGen: "₹100/-", feeSc: "₹0/-", applyUrl: "https://ssc.gov.in", status: "published" },
-    { id: 501, title: "Railway RRB Group D & NTPC Revised Syllabus & Exam Pattern 2026 PDF", category: "syllabus", state: "all", jobType: "railway", releaseDate: "15 Oct 2026", lastDate: "Official PDF", isExtended: false, dept: "Railway Recruitment Board", totalPosts: "43,558 Posts", qual: "10th / 12th / Graduate", feeGen: "Free PDF", feeSc: "Free PDF", applyUrl: "https://indianrailways.gov.in", status: "published" },
-    { id: 601, title: "NTA CUET UG & PG 2026 Central Universities Online Admission Form", category: "admissions", state: "all", jobType: "teacher", releaseDate: "15 Oct 2026", lastDate: "15 Nov 2026", isExtended: true, dept: "National Testing Agency", totalPosts: "250+ Universities", qual: "12th / Graduate", feeGen: "₹1000/-", feeSc: "₹800/-", applyUrl: "https://nta.ac.in", status: "published" }
-  ];
+    const INITIAL_CLEAN_DATA = {
+      credentials: { email: "admin@sarkarinaukar.com", password: "admin123" },
+      tickerText: "Live Government Recruitment & Examination Updates Active 2026",
+      ads: { adsense: { enabled: false, client_id: "" }, banner: { enabled: false, image_url: "", target_url: "" } },
+      trendingCards: [
+        { title: "SSC CGL 2026", sub: "Apply Online", url: "#", active: true },
+        { title: "Railway NTPC", sub: "Apply Online", url: "#", active: true },
+        { title: "UP Police Bharti", sub: "Apply Online", url: "#", active: true },
+        { title: "IBPS PO Prelims", sub: "Apply Online", url: "#", active: true },
+        { title: "MPSC State Service", sub: "Apply Online", url: "#", active: true },
+        { title: "Army Agniveer", sub: "Apply Online", url: "#", active: true }
+      ],
+      posts: []
+    };
 
-  async function initAdminDB() {
-    let posts = [];
-    try {
-      const s1 = localStorage.getItem(STORAGE_KEY);
-      if (s1) {
-        const parsed = JSON.parse(s1);
-        if (parsed && Array.isArray(parsed.posts) && parsed.posts.length > 0) posts = parsed.posts;
+    function getDB() {
+      const d = localStorage.getItem(STORAGE_KEY);
+      if (!d) return INITIAL_CLEAN_DATA;
+      try { return JSON.parse(d); } catch(e) { return INITIAL_CLEAN_DATA; }
+    }
+
+    function saveDB(db) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+      localStorage.setItem("admin_synced_posts", JSON.stringify(db.posts || []));
+      refreshUI();
+    }
+
+    function checkAuth() {
+      const isAuth = localStorage.getItem(SESSION_KEY) === "true";
+      document.getElementById("loginScreen").style.display = isAuth ? "none" : "flex";
+      document.getElementById("adminApp").style.display = isAuth ? "block" : "none";
+      if (isAuth) {
+        refreshUI();
+        loadAdsSettings();
+        renderTop6TrendingEditor();
       }
-      if (posts.length === 0) {
-        const s2 = localStorage.getItem("admin_synced_posts");
-        if (s2) posts = JSON.parse(s2);
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const em = document.getElementById("loginEmail").value.trim();
+      const pw = document.getElementById("loginPassword").value.trim();
+      if (em === "admin@sarkarinaukar.com" && pw === "admin123") {
+        localStorage.setItem(SESSION_KEY, "true");
+        showToast("Login Successful!", "success");
+        checkAuth();
+      } else {
+        showToast("Invalid Email or Password!", "error");
       }
-    } catch (e) {}
+    }
 
-    try {
-      const res = await fetch("jobs_database.json?t=" + Date.now());
-      if (res.ok) {
-        const remote = await res.json();
-        const rPosts = Array.isArray(remote) ? remote : (remote.posts || []);
-        if (rPosts.length > 0 && posts.length === 0) posts = rPosts;
-      }
-    } catch (e) {}
-
-    if (!posts || posts.length === 0) posts = DEFAULT_LIVE_POSTS;
-    saveAdminPosts(posts);
-  }
-
-  function getAdminPosts() {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const d = JSON.parse(raw);
-        if (Array.isArray(d.posts)) return d.posts;
-      }
-    } catch (e) {}
-    return DEFAULT_LIVE_POSTS;
-  }
-
-  function saveAdminPosts(postsArray) {
-    const dbObj = { posts: postsArray, updatedAt: new Date().toISOString() };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(dbObj));
-    localStorage.setItem("admin_synced_posts", JSON.stringify(postsArray));
-    refreshAdminTables();
-  }
-
-  function checkAuth() {
-    const isAuth = localStorage.getItem(SESSION_KEY) === "true";
-    document.getElementById("loginScreen").style.display = isAuth ? "none" : "flex";
-    document.getElementById("adminApp").style.display = isAuth ? "block" : "none";
-    if (isAuth) initAdminDB();
-  }
-
-  window.handleAdminLogin = function(e) {
-    e.preventDefault();
-    const em = document.getElementById("loginEmail").value.trim();
-    const pw = document.getElementById("loginPassword").value.trim();
-    if (em === "admin@sarkarinaukar.com" && pw === "admin123") {
-      localStorage.setItem(SESSION_KEY, "true");
+    function handleAdminLogout() {
+      localStorage.removeItem(SESSION_KEY);
+      showToast("Logged out successfully", "info");
       checkAuth();
-    } else {
-      alert("Invalid Email or Password!");
     }
-  };
 
-  window.handleAdminLogout = function() {
-    localStorage.removeItem(SESSION_KEY);
+    function switchTab(id, el) {
+      document.querySelectorAll(".view-panel").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".sidebar-menu li a").forEach(l => l.classList.remove("active"));
+      const t = document.getElementById("view-" + id);
+      if (t) t.classList.add("active");
+      if (el) el.classList.add("active");
+
+      const titles = { dashboard: "Dashboard", posts: "All Live Posts", createPost: "Add / Edit Post", adsManager: "Ads & Sponsors", tickerStrip: "Breaking Ticker", backup: "Database & Backup", trafficStats: "Traffic Statistics", trendingEditor: "Top 6 Trending Forms", categories: "Standard Categories", users: "Users", notifications: "Notifications", databaseView: "Database JSON" };
+      document.getElementById("pageTitleText").textContent = titles[id] || "Admin Panel";
+      if (id === "posts") renderAllPosts();
+      if (id === "databaseView") refreshLiveDbView();
+      if (id === "trendingEditor") renderTop6TrendingEditor();
+    }
+
+    function toggleCardSec(id) {
+      const c = document.getElementById(id);
+      c.classList.toggle("active-sec");
+    }
+    function toggleScopeState(val) {
+      document.getElementById("stateDropdownGroup").style.display = (val === "state") ? "block" : "none";
+    }
+
+    function handleSaveUniversalPost(e) {
+      e.preventDefault();
+      const db = getDB();
+      const editId = document.getElementById("editPostId").value;
+      const title = document.getElementById("postTitle").value.trim();
+
+      const item = {
+        id: editId ? Number(editId) : Date.now(),
+        title,
+        overview: document.getElementById("postOverview").value.trim() || title,
+        category: document.getElementById("postCategory").value,
+        badge: document.getElementById("postBadge").value,
+        scope: document.getElementById("postScope").value,
+        state: document.getElementById("postState").value,
+        dept: document.getElementById("postDept").value.trim() || "Govt Board",
+        status: "published",
+        releaseDate: "15 Oct 2026",
+        lastDate: "30 Oct 2026"
+      };
+
+      if (!db.posts) db.posts = [];
+      if (editId) {
+        const idx = db.posts.findIndex(p => p.id == editId);
+        if (idx !== -1) db.posts[idx] = item;
+        showToast("Post updated successfully!", "success");
+      } else {
+        db.posts.unshift(item);
+        showToast("Post published to website!", "success");
+      }
+      saveDB(db);
+      resetMasterForm();
+      switchTab("posts", document.querySelectorAll(".sidebar-menu li a")[1]);
+    }
+
+    function editPost(id) {
+      const db = getDB();
+      const p = (db.posts || []).find(x => x.id == id);
+      if (!p) return;
+      document.getElementById("editPostId").value = p.id;
+      document.getElementById("postTitle").value = p.title || "";
+      document.getElementById("postOverview").value = p.overview || "";
+      document.getElementById("postCategory").value = p.category || "latest_jobs";
+      document.getElementById("postBadge").value = p.badge || "NEW";
+      document.getElementById("formModeTitle").textContent = "✏️ Edit Post #" + p.id;
+      switchTab("createPost", document.querySelectorAll(".sidebar-menu li a")[2]);
+    }
+
+    function deletePost(id) {
+      if (!confirm("Delete this live post?")) return;
+      const db = getDB();
+      db.posts = (db.posts || []).filter(p => p.id != id);
+      saveDB(db);
+      showToast("Post deleted!", "info");
+      refreshUI();
+      renderAllPosts();
+    }
+
+    function resetMasterForm() {
+      document.getElementById("universalPostForm").reset();
+      document.getElementById("editPostId").value = "";
+      document.getElementById("formModeTitle").textContent = "➕ Universal Post Creator";
+    }
+
+    function renderTop6TrendingEditor() {
+      const db = getDB();
+      const cont = document.getElementById("top6TrendingContainer");
+      if (!cont) return;
+      const cards = db.trendingCards || INITIAL_CLEAN_DATA.trendingCards;
+      cont.innerHTML = cards.map((c, i) => `
+        <div class="trending-card-item-box">
+          <h5>Card #${i+1}</h5>
+          <div class="form-group"><label>Title</label><input type="text" class="tc-title" value="${c.title || ''}"></div>
+          <div class="form-group"><label>Subtitle</label><input type="text" class="tc-sub" value="${c.sub || ''}"></div>
+          <div class="form-group"><label>Link</label><input type="text" class="tc-url" value="${c.url || ''}"></div>
+        </div>
+      `).join("");
+    }
+
+    function saveTop6TrendingForms() {
+      const db = getDB();
+      const ts = document.querySelectorAll(".tc-title");
+      const ss = document.querySelectorAll(".tc-sub");
+      const us = document.querySelectorAll(".tc-url");
+      db.trendingCards = Array.from(ts).map((el, i) => ({
+        title: el.value, sub: ss[i].value, url: us[i].value, active: true
+      }));
+      saveDB(db);
+      showToast("Trending forms saved!", "success");
+    }
+
+    function loadAdsSettings() {
+      const db = getDB();
+      const ads = db.ads || INITIAL_CLEAN_DATA.ads;
+      document.getElementById("check_adsense").checked = ads.adsense.enabled;
+      document.getElementById("ad_client_id").value = ads.adsense.client_id || "";
+      document.getElementById("check_banner").checked = ads.banner.enabled;
+      document.getElementById("ad_banner_img").value = ads.banner.image_url || "";
+      document.getElementById("ad_banner_link").value = ads.banner.target_url || "";
+    }
+
+    function saveAdsSettings() {
+      const db = getDB();
+      db.ads = {
+        adsense: { enabled: document.getElementById("check_adsense").checked, client_id: document.getElementById("ad_client_id").value },
+        banner: { enabled: document.getElementById("check_banner").checked, image_url: document.getElementById("ad_banner_img").value, target_url: document.getElementById("ad_banner_link").value }
+      };
+      saveDB(db);
+      showToast("Ads settings saved!", "success");
+    }
+
+    function saveTicker() {
+      const db = getDB();
+      db.tickerText = document.getElementById("tickerInput").value;
+      saveDB(db);
+      showToast("Ticker updated!", "success");
+    }
+
+    function refreshUI() {
+      const db = getDB();
+      const posts = db.posts || [];
+      document.getElementById("statTotal").textContent = posts.length;
+      document.getElementById("statJobs").textContent = posts.filter(p => p.category === "latest_jobs").length;
+      document.getElementById("statResults").textContent = posts.filter(p => p.category === "results").length;
+      document.getElementById("statAdmit").textContent = posts.filter(p => p.category === "admit_cards").length;
+
+      const body = document.getElementById("dashTableBody");
+      body.innerHTML = posts.length === 0 ? `<tr><td colspan="5" style="text-align:center; color:#94a3b8;">No posts.</td></tr>` :
+        posts.slice(0, 6).map(p => `
+          <tr>
+            <td><strong>${p.title}</strong></td>
+            <td><span class="badge badge-primary">${p.category}</span></td>
+            <td><span class="badge badge-red">${p.badge || 'NEW'}</span></td>
+            <td>${(p.state || 'all').toUpperCase()}</td>
+            <td>
+              <button class="btn-row-edit" onclick="editPost(${p.id})">Edit</button>
+              <button class="btn-row-del" onclick="deletePost(${p.id})">Delete</button>
+            </td>
+          </tr>
+        `).join("");
+      document.getElementById("tickerInput").value = db.tickerText || "";
+    }
+
+    function renderAllPosts() {
+      const db = getDB();
+      const posts = db.posts || [];
+      const body = document.getElementById("allPostsBody");
+      body.innerHTML = posts.map(p => `
+        <tr>
+          <td><strong>${p.title}</strong></td>
+          <td><span class="badge badge-primary">${p.category}</span></td>
+          <td><span class="badge badge-red">${p.badge || 'NEW'}</span></td>
+          <td>${(p.state || 'all').toUpperCase()}</td>
+          <td><span class="badge badge-green">Published</span></td>
+          <td>
+            <button class="btn-row-edit" onclick="editPost(${p.id})">Edit</button>
+            <button class="btn-row-del" onclick="deletePost(${p.id})">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function refreshLiveDbView() {
+      document.getElementById("liveRawDbText").value = JSON.stringify(getDB(), null, 2);
+    }
+
+    function downloadJSONBackup() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(getDB(), null, 2));
+      const a = document.createElement("a");
+      a.href = dataStr; a.download = "jobs_database.json"; a.click();
+    }
+
+    function showToast(msg, type = "success") {
+      const t = document.getElementById("adminToast");
+      t.textContent = msg; t.className = "toast-" + type; t.style.display = "block";
+      setTimeout(() => t.style.display = "none", 3000);
+    }
+
     checkAuth();
-  };
-
-  window.switchTab = function(id, el) {
-    document.querySelectorAll(".view-panel").forEach(p => p.classList.remove("active"));
-    document.querySelectorAll(".sidebar-menu li a").forEach(l => l.classList.remove("active"));
-    const target = document.getElementById("view-" + id);
-    if (target) target.classList.add("active");
-    if (el) el.classList.add("active");
-    refreshAdminTables();
-  };
-
-  window.refreshAdminTables = function() {
-    const posts = getAdminPosts();
-    document.getElementById("statTotal").textContent = posts.length;
-    document.getElementById("statJobs").textContent = posts.filter(p => p.category === "latest_jobs").length;
-    document.getElementById("statResults").textContent = posts.filter(p => p.category === "results").length;
-    document.getElementById("statAdmit").textContent = posts.filter(p => p.category === "admit_cards").length;
-    document.getElementById("statOther").textContent = posts.filter(p => ["answer_keys", "syllabus", "admissions"].includes(p.category)).length;
-
-    const dashBody = document.getElementById("dashTableBody");
-    dashBody.innerHTML = posts.map((p, idx) => `
-      <tr>
-        <td>${idx + 1}</td>
-        <td><strong>${p.title}</strong></td>
-        <td><span class="badge badge-primary">${p.category}</span></td>
-        <td>${p.releaseDate || '14 Oct 2026'}</td>
-        <td>${p.lastDate || 'Check Notice'}</td>
-        <td>${p.isExtended ? '<span class="badge badge-red">Yes (Extended)</span>' : '<span class="badge badge-green">Normal</span>'}</td>
-        <td style="white-space:nowrap;">
-          <button class="btn-row-edit" onclick="editLivePost(${p.id})">✏️ Edit</button>
-          <button class="btn-row-del" onclick="deleteLivePost(${p.id})">🗑️ Delete</button>
-        </td>
-      </tr>
-    `).join("");
-
-    renderAllPosts();
-  };
-
-  window.renderAllPosts = function() {
-    const q = (document.getElementById("adminSearchBox")?.value || "").toLowerCase().trim();
-    const posts = getAdminPosts().filter(p => !q || p.title.toLowerCase().includes(q) || (p.category || "").toLowerCase().includes(q));
-    const allBody = document.getElementById("allPostsBody");
-    if (!allBody) return;
-    allBody.innerHTML = posts.map((p, idx) => `
-      <tr>
-        <td>${idx + 1}</td>
-        <td><strong>${p.title}</strong></td>
-        <td><span class="badge badge-primary">${p.category}</span></td>
-        <td>${(p.state || 'all').toUpperCase()}</td>
-        <td>${p.releaseDate || '14 Oct 2026'}</td>
-        <td>${p.lastDate || '-'}</td>
-        <td style="white-space:nowrap;">
-          <button class="btn-row-edit" onclick="editLivePost(${p.id})">✏️ Edit</button>
-          <button class="btn-row-del" onclick="deleteLivePost(${p.id})">🗑️ Delete</button>
-        </td>
-      </tr>
-    `).join("");
-  };
-
-  window.openNewPostCreator = function() {
-    resetPostForm();
-    switchTab("createPost", document.querySelectorAll(".menu-link")[2]);
-  };
-
-  window.editLivePost = function(id) {
-    const posts = getAdminPosts();
-    const p = posts.find(x => x.id == id);
-    if (!p) return;
-
-    document.getElementById("editPostId").value = p.id;
-    document.getElementById("postTitle").value = p.title || "";
-    document.getElementById("postCategory").value = p.category || "latest_jobs";
-    document.getElementById("postState").value = p.state || "all";
-    document.getElementById("postJobType").value = p.jobType || "all";
-    document.getElementById("postDept").value = p.dept || "";
-    document.getElementById("d_start").value = p.releaseDate || "";
-    document.getElementById("d_end").value = p.lastDate || "";
-    document.getElementById("postExtended").value = p.isExtended ? "true" : "false";
-    document.getElementById("v_total").value = p.totalPosts || "";
-    document.getElementById("v_qual").value = p.qual || "";
-    document.getElementById("f_gen").value = p.feeGen || "";
-    document.getElementById("f_sc").value = p.feeSc || "";
-    document.getElementById("link_apply").value = p.applyUrl || "";
-
-    document.getElementById("formModeTitle").textContent = "✏️ Edit Live Post #" + p.id;
-    switchTab("createPost", document.querySelectorAll(".menu-link")[2]);
-  };
-
-  window.deleteLivePost = function(id) {
-    if (!confirm("Kya aap sach mein is live post ko website se delete karna chahte hain?")) return;
-    const posts = getAdminPosts().filter(x => x.id != id);
-    saveAdminPosts(posts);
-    showToast("Post deleted from live website!");
-  };
-
-  window.handleSavePost = function(e) {
-    e.preventDefault();
-    const posts = getAdminPosts();
-    const editId = document.getElementById("editPostId").value;
-
-    const newPost = {
-      id: editId ? Number(editId) : Date.now(),
-      title: document.getElementById("postTitle").value.trim(),
-      category: document.getElementById("postCategory").value,
-      state: document.getElementById("postState").value,
-      jobType: document.getElementById("postJobType").value,
-      dept: document.getElementById("postDept").value.trim() || "Government Recruitment Board",
-      releaseDate: document.getElementById("d_start").value.trim() || "15 Oct 2026",
-      lastDate: document.getElementById("d_end").value.trim() || "15 Nov 2026",
-      isExtended: document.getElementById("postExtended").value === "true",
-      totalPosts: document.getElementById("v_total").value.trim() || "Various Posts",
-      qual: document.getElementById("v_qual").value.trim() || "As per official notification",
-      feeGen: document.getElementById("f_gen").value.trim() || "₹100/-",
-      feeSc: document.getElementById("f_sc").value.trim() || "₹0/-",
-      applyUrl: document.getElementById("link_apply").value.trim() || "https://ssc.gov.in",
-      rushScore: 105,
-      status: "published"
-    };
-
-    if (editId) {
-      const idx = posts.findIndex(x => x.id == editId);
-      if (idx !== -1) posts[idx] = newPost;
-    } else {
-      posts.unshift(newPost);
-    }
-
-    saveAdminPosts(posts);
-    resetPostForm();
-    showToast("Post Saved & Live on Website!");
-    switchTab("dashboard", document.querySelectorAll(".menu-link")[0]);
-  };
-
-  window.resetPostForm = function() {
-    document.getElementById("universalPostForm").reset();
-    document.getElementById("editPostId").value = "";
-    document.getElementById("formModeTitle").textContent = "➕ Add New Live Post";
-  };
-
-  window.downloadJSONBackup = function() {
-    const payload = { posts: getAdminPosts(), updatedAt: new Date().toISOString() };
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(payload, null, 2));
-    const a = document.createElement("a");
-    a.href = dataStr;
-    a.download = "jobs_database.json";
-    a.click();
-  };
-
-  window.handleJsonFileImport = function(e) {
-    const f = e.target.files[0];
-    if (!f) return;
-    const r = new FileReader();
-    r.onload = (evt) => {
-      try {
-        const j = JSON.parse(evt.target.result);
-        const arr = Array.isArray(j) ? j : (j.posts || []);
-        if (arr.length > 0) {
-          saveAdminPosts(arr);
-          showToast("JSON Database Imported Successfully!");
-        }
-      } catch (err) { alert("Invalid JSON file"); }
-    };
-    r.readAsText(f);
-  };
-
-  window.triggerGitHubAction = async function() {
-    const statusDiv = document.getElementById("triggerStatus");
-    let token = localStorage.getItem("GH_ADMIN_TOKEN") || prompt("Enter GitHub Personal Access Token:");
-    if (!token) return;
-    localStorage.setItem("GH_ADMIN_TOKEN", token.trim());
-    statusDiv.innerText = "⏳ Triggering GitHub Scraper workflow...";
-    try {
-      const res = await fetch("https://api.github.com/repos/creatorwebsite-dotcom/sarkariNaukarBanega-portal/actions/workflows/scraper.yml/dispatches", {
-        method: "POST",
-        headers: { "Authorization": `token ${token.trim()}`, "Accept": "application/vnd.github.v3+json", "Content-Type": "application/json" },
-        body: JSON.stringify({ ref: "main" })
-      });
-      statusDiv.innerText = (res.ok || res.status === 204) ? "✅ Scraper Triggered! Refresh in 1-2 mins." : "❌ GitHub API Error: " + res.status;
-    } catch (e) { statusDiv.innerText = "❌ Error: " + e.message; }
-  };
-
-  function showToast(msg) {
-    const t = document.getElementById("adminToast");
-    t.textContent = msg;
-    t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 3000);
-  }
-
-  checkAuth();
   </script>
 </body>
 </html>
